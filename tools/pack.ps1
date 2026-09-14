@@ -40,7 +40,7 @@ $Required = @(
     'BepInEx.dll', '0Harmony.dll',
     'UnityEngine.CoreModule.dll', 'UnityEngine.dll',
     'Unity.TextMeshPro.dll', 'UnityEngine.UI.dll',
-    'YarnSpinner.dll', 'YarnSpinner.Unity.dll',
+    'YarnSpinner.dll', 'YarnSpinner.Unity.dll', 'Yarn.Google.Protobuf.dll',
     'UnityEngine.IMGUIModule.dll', 'UnityEngine.TextRenderingModule.dll',
     'Unity.InputSystem.dll', 'UnityEngine.TextCoreFontEngineModule.dll',
     'UnityEngine.AssetBundleModule.dll', 'Naelstrof.UnityScriptableSettings.dll', 'Unity.Localization.dll'
