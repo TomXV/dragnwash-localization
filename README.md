@@ -47,11 +47,16 @@ If you prefer to do it by hand, follow the manual steps below.
 > - Failing that, right-click `Install.exe` → Properties → tick **Unblock** → OK, then double-click it again.
 
 > [!WARNING]
-> **If Windows Security (Microsoft Defender) detects `Install.exe` as "Trojan:Script/Wacatac.B!ml"**
+> **If Windows Security (Microsoft Defender) detects `Install.exe` as "Trojan:Script/Wacatac.B!ml", or `Install.exe` is missing from the folder you extracted**
 > This is a false positive. The `!ml` suffix means a machine-learning model guessed the file looks suspicious, not that it matched known malware. `Install.exe` is a small unsigned program that only starts the installer window (a PowerShell script) without a console window, and that way of starting a script resembles what malware does. Its source is public: [`installer/Launcher.cs`](installer/Launcher.cs) and [`installer/Installer.ps1`](installer/Installer.ps1).
-> - First make sure the zip you downloaded is genuine: run `Get-FileHash <path to the zip>` in PowerShell and compare it with the `sha256` shown next to the zip on [Releases](https://github.com/TomXV/dragnwash-localization/releases). If it does not match, delete the file and do not use it.
-> - If it matches, open the detection in Windows Security → **Protection history** and choose **Actions → Allow on device**. There is no need to turn Windows Security off.
-> - If you would rather not allow it, use the manual installation steps below instead.
+>
+> When the file is quarantined automatically no threat name is shown, and `Install.exe` simply looks missing from the extracted folder. Windows Security → **Protection history** shows what was removed.
+> - First make sure the zip you downloaded is genuine. In PowerShell, run `(Get-FileHash "<path to the zip>").Hash -eq ("<the sha256 from Releases>" -replace '^sha256:')`. It prints `True` when the file is the one published here; if it prints `False`, delete the file and do not use it.
+> - The `sha256` is shown under `DragNWashLocalization-<version>.zip` on the [Releases](https://github.com/TomXV/dragnwash-localization/releases) page. The two automatic "Source code" rows have no hash, so do not use those.
+> - A match confirms the file is the one published here. It is not by itself proof that the file is safe, which is what the source linked above is for.
+> - If it matches, open the detection in Windows Security → **Protection history** and choose **Actions → Allow on device**. Allow that one file only: there is no need to add a folder exclusion or to turn Windows Security off.
+> - **`Install.cmd`** in the same folder opens the same installer window without `Install.exe`. Whether it avoids the detection is untested, but it is worth a try.
+> - If you would rather not allow anything, use the manual installation steps below instead.
 > - Do not use copies from anywhere other than this repository's Releases page.
 
 ### Windows on ARM (verified)

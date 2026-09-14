@@ -55,9 +55,10 @@ Install.cmd
 install-steamdeck.sh
 installer/Installer.ps1
 README.md
+README.ja.md
 ```
 
-`Install.exe` は `pack.ps1` が .NET Framework 4 付属の C# コンパイラ（`%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe`）で生成する、コンソールを持たない小さな起動用プログラムです。追加のインストールは不要です。利用者はこれをダブルクリックしてインストール・更新・アンインストールを行います。従来どおり `BepInEx/` を手動でゲームフォルダに重ねる方法も使えます。`Install.cmd` は、SmartScreen やポリシーで署名なしの `Install.exe` が止められる環境向けに、同じインストーラー画面を開きます。`install-steamdeck.sh` は Steam Deck / Linux 用のインストーラーで、改行コードは LF のままにする必要があります（`.gitattributes` で固定）。`installer/experimental/` の実験的な macOS 用スクリプトは zip に入れません。
+`Install.exe` は `pack.ps1` が .NET Framework 4 付属の C# コンパイラ（`%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe`）で生成する、コンソールを持たない小さな起動用プログラムです。追加のインストールは不要です。利用者はこれをダブルクリックしてインストール・更新・アンインストールを行います。従来どおり `BepInEx/` を手動でゲームフォルダに重ねる方法も使えます。`Install.cmd` は、SmartScreen やポリシーで署名なしの `Install.exe` が止められる環境向けに、同じインストーラー画面を開きます。`install-steamdeck.sh` は Steam Deck / Linux 用のインストーラーで改行コードは LF、`Install.cmd` は CRLF のままにする必要があります（どちらも `.gitattributes` で固定）。`installer/experimental/` の実験的な macOS 用スクリプトは zip に入れません。
 
 ### 3. 検証する
 

@@ -21,7 +21,7 @@
 #     Install.cmd                <- same window, for when Install.exe is blocked
 #     install-steamdeck.sh       <- Steam Deck / Linux: bash install-steamdeck.sh
 #     installer/Installer.ps1
-#     README.md
+#     README.md, README.ja.md
 param(
     [string]$Version
 )
@@ -107,7 +107,10 @@ Get-ChildItem -LiteralPath $SrcTranslations -Directory |
         if (Test-Path -LiteralPath $nameFile) { Copy-Item -LiteralPath $nameFile -Destination $dest }
     }
 
+# Both READMEs ship: the user most likely to be stuck is looking at the extracted
+# folder offline, and most of them read Japanese.
 Copy-Item -LiteralPath (Join-Path $Root 'README.md') -Destination $Stage
+Copy-Item -LiteralPath (Join-Path $Root 'README.ja.md') -Destination $Stage
 
 # The one-click installer: Install.exe at the zip root, script beside the payload.
 # The exe is a tiny console-less launcher compiled with the C# compiler that
@@ -125,7 +128,7 @@ $LauncherSrc = Join-Path $Root 'installer/Launcher.cs'
 & $Csc /nologo /target:winexe /optimize+ /r:System.Windows.Forms.dll "/out:$LauncherExe" $LauncherSrc
 if ($LASTEXITCODE -ne 0) { throw 'Failed to build Install.exe.' }
 
-# 5. Zip the stage contents (so the zip root holds BepInEx/ and README.md).
+# 5. Zip the stage contents (so the zip root holds BepInEx/ and the READMEs).
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 $Zip = Join-Path $OutDir "DragNWashLocalization-$Version.zip"
 if (Test-Path -LiteralPath $Zip) {

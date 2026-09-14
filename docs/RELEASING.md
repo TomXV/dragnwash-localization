@@ -51,9 +51,10 @@ Install.cmd
 install-steamdeck.sh
 installer/Installer.ps1
 README.md
+README.ja.md
 ```
 
-`Install.exe` is a small console-less launcher compiled by `pack.ps1` with the C# compiler that ships with .NET Framework 4 (`%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe`); nothing extra needs to be installed. Users double-click it to install, update, or uninstall. Extracting the `BepInEx/` directory into the game folder by hand still works. `Install.cmd` opens the same installer window on machines where SmartScreen or a policy blocks the unsigned `Install.exe`. `install-steamdeck.sh` is the Steam Deck / Linux installer and must keep LF line endings (enforced by `.gitattributes`). The experimental macOS script in `installer/experimental/` is not packaged.
+`Install.exe` is a small console-less launcher compiled by `pack.ps1` with the C# compiler that ships with .NET Framework 4 (`%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe`); nothing extra needs to be installed. Users double-click it to install, update, or uninstall. Extracting the `BepInEx/` directory into the game folder by hand still works. `Install.cmd` opens the same installer window on machines where SmartScreen or a policy blocks the unsigned `Install.exe`. `install-steamdeck.sh` is the Steam Deck / Linux installer and must keep LF line endings, and `Install.cmd` must keep CRLF (both enforced by `.gitattributes`). The experimental macOS script in `installer/experimental/` is not packaged.
 
 To install it, extract the archive into the game directory and merge the included `BepInEx/` directory.
 

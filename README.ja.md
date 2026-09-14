@@ -47,11 +47,16 @@
 > - それでも駄目なら、`Install.exe` を右クリック → プロパティ → 一番下の **「許可する」** にチェック → OK のあと、もう一度ダブルクリック
 
 > [!WARNING]
-> **Windows セキュリティ（Microsoft Defender）が `Install.exe` を「Trojan:Script/Wacatac.B!ml」と検出する場合**
+> **Windows セキュリティ（Microsoft Defender）が `Install.exe` を「Trojan:Script/Wacatac.B!ml」と検出する場合、または展開したフォルダに `Install.exe` が見当たらない場合**
 > 誤検知です。末尾の `!ml` は、既知のウイルスと一致したのではなく、機械学習で「怪しいパターンに似ている」と推定されたことを表します。`Install.exe` はインストーラー画面（PowerShell のスクリプト）を、黒い窓を出さずに起動するだけの小さな署名なしプログラムで、この起動のしかたがマルウェアの手口に似ているため検出されることがあります。中身は [`installer/Launcher.cs`](installer/Launcher.cs) と [`installer/Installer.ps1`](installer/Installer.ps1) で公開しています。
-> - まず、ダウンロードした zip が本物か確かめてください。PowerShell で `Get-FileHash <zip のパス>` を実行し、[Releases](https://github.com/TomXV/dragnwash-localization/releases) の zip の横に表示される `sha256` と一致すれば、このリポジトリで配布しているファイルです。一致しなければ使わずに削除してください
-> - 一致した場合は、Windows セキュリティの「保護の履歴」でその検出を開き、「操作」→「デバイスで許可」を選ぶと使えます。Windows セキュリティ自体を無効にする必要はありません
-> - 許可したくない場合は、下の「手動で導入する」の手順でも導入できます
+>
+> 自動で隔離されたときは検出名が表示されず、展開したフォルダから `Install.exe` が消えているように見えるだけです。何が消されたかは、Windows セキュリティの「保護の履歴」で確認できます。
+> - まず、ダウンロードした zip が本物か確かめてください。PowerShell で `(Get-FileHash "<zip のパス>").Hash -eq ("<Releases の sha256>" -replace '^sha256:')` を実行し、`True` と出れば、このリポジトリで配布しているファイルです。`False` なら使わずに削除してください
+> - `sha256` は [Releases](https://github.com/TomXV/dragnwash-localization/releases) のページで `DragNWashLocalization-<version>.zip` の下に表示されます。自動で付く「Source code」の2行にはハッシュがないので、そちらは使わないでください
+> - 一致は「配布しているファイルと同じもの」の確認であって、安全性そのものの証明ではありません。中身は上記のソースで確認できます
+> - 一致した場合は、Windows セキュリティの「保護の履歴」でその検出を開き、「操作」→「デバイスで許可」を選ぶと使えます。許可するのはこのファイルだけにしてください。フォルダの除外を追加したり、Windows セキュリティを無効にしたりする必要はありません
+> - 同じフォルダの **`Install.cmd`** でも、`Install.exe` を使わずに同じインストーラー画面が開きます。これで検出を避けられるかは未検証ですが、試す価値はあります
+> - 何も許可したくない場合は、下の「手動で導入する」の手順でも導入できます
 > - GitHub の Releases 以外から入手したファイルは使わないでください
 
 ### Windows on ARM（動作確認済み）
