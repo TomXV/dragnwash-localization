@@ -16,7 +16,7 @@ namespace DragNWashLocalization
     {
         public const string PluginGuid = "com.tomxv.dragnwash.localization";
         public const string PluginName = "DragNWashLocalization";
-        public const string PluginVersion = "0.6.1";
+        public const string PluginVersion = "0.6.2";
 
         // Every visible line costs dynamic geometry each frame the menu is open,
         // and that scratch memory is what the Direct3D 12 bug chokes on at

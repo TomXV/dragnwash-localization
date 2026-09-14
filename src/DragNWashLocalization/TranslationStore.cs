@@ -189,6 +189,7 @@ namespace DragNWashLocalization
                 if (File.Exists(path))
                 {
                     int badKeys = 0;
+                    var examples = new List<string>();
                     foreach (var row in CsvReader.ReadRows(path))
                     {
                         if (!row.TryGetValue("translation", out var translation) || string.IsNullOrEmpty(translation))
@@ -202,6 +203,10 @@ namespace DragNWashLocalization
                             if (malformed)
                             {
                                 badKeys++;
+                                if (examples.Count < MaxMalformedExamples)
+                                {
+                                    examples.Add(DescribeMalformed(row));
+                                }
                             }
                             continue;
                         }
@@ -221,7 +226,7 @@ namespace DragNWashLocalization
 
                     if (badKeys > 0)
                     {
-                        Plugin.Log($"[load] {badKeys} row(s) in {label} have a malformed key (expected {TranslationKey.Length} hex digits) and were skipped.");
+                        Plugin.Log($"[load] {badKeys} row(s) in {label} were skipped: {string.Join("; ", examples)}{(badKeys > examples.Count ? "; ..." : "")}");
                     }
                 }
             }
@@ -231,6 +236,23 @@ namespace DragNWashLocalization
                 // exclusively. Keep going with whatever else loaded.
                 Plugin.Log($"[load] Could not read {label}: {ex.Message}. Close the program holding it and save the file again to hot reload.");
             }
+        }
+
+        private const int MaxMalformedExamples = 3;
+
+        // Why a row was skipped, in terms a translator can act on.
+        private static string DescribeMalformed(Dictionary<string, string> row)
+        {
+            row.TryGetValue("key", out string key);
+            row.TryGetValue("source_en", out string text);
+            key = key?.Trim();
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
+            {
+                return TranslationKey.LooksLikeKey(key.ToLowerInvariant())
+                    ? $"key {key} does not match its English \"{text}\" (whose key is {KeyFor(text)}); if the game was updated, export the working copy again"
+                    : $"\"{key}\" is not a {TranslationKey.Length}-digit key";
+            }
+            return $"\"{key}\" is not a {TranslationKey.Length}-digit key";
         }
 
         // A row identifies its string either way. key wins if both are present
@@ -307,13 +329,21 @@ namespace DragNWashLocalization
             // line:xxxxxxxx -> translation. Published only when translated: a
             // working copy lists an empty line-ID row at every shared line.
             var lineRows = new Dictionary<string, string>(StringComparer.Ordinal);
-            int converted = 0, kept = 0, dropped = 0, lineKept = 0;
+            int converted = 0, kept = 0, dropped = 0, lineKept = 0, fromPublished = 0;
+            var droppedExamples = new List<string>();
+            // Keys whose English came from the working copy, to spot a working
+            // copy written before a game update changed that English.
+            var fromWorkingEnglish = new List<string>();
             foreach (var row in CsvReader.ReadRows(input))
             {
                 string key = ResolveKey(row, out string source, out bool malformed);
                 if (key == null)
                 {
                     dropped++;
+                    if (malformed && droppedExamples.Count < MaxMalformedExamples)
+                    {
+                        droppedExamples.Add(DescribeMalformed(row));
+                    }
                     continue;
                 }
                 if (TranslationKey.LooksLikeLineId(key))
@@ -340,6 +370,7 @@ namespace DragNWashLocalization
                 if (source != null)
                 {
                     converted++;
+                    fromWorkingEnglish.Add(key);
                 }
                 else
                 {
@@ -357,10 +388,65 @@ namespace DragNWashLocalization
                 inputOrder.Add(key);
             }
 
+            // A working copy only holds the rows it was written with. Rows the
+            // published file gained since (a pack update, keys re-made after a
+            // game update) would otherwise be lost, so keep every published row
+            // the working copy does not have. The working copy wins where both do.
+            var publishedKeys = new HashSet<string>(StringComparer.Ordinal);
+            if (input == working && File.Exists(path))
+            {
+                foreach (var row in CsvReader.ReadRows(path))
+                {
+                    string key = ResolveKey(row, out _, out _);
+                    if (key == null)
+                    {
+                        continue;
+                    }
+                    row.TryGetValue("translation", out string published);
+                    if (string.IsNullOrEmpty(published))
+                    {
+                        continue;
+                    }
+                    if (TranslationKey.LooksLikeLineId(key))
+                    {
+                        if (!lineRows.ContainsKey(key))
+                        {
+                            lineRows[key] = published;
+                        }
+                        continue;
+                    }
+                    publishedKeys.Add(key);
+                    if (rows.ContainsKey(key))
+                    {
+                        continue;
+                    }
+                    row.TryGetValue("speaker", out string speaker);
+                    rows[key] = new KeyValuePair<string, string>(speaker ?? string.Empty, published);
+                    inputOrder.Add(key);
+                    fromPublished++;
+                }
+            }
+
             // The comment block under the header (language name, provisional
             // notice, credits) belongs to the published file; keep it.
             List<string> leadingComments = ReadLeadingComments(path);
             ScriptOrder.Data order = ScriptOrder.Load(pluginDirectory);
+            int stale = 0;
+            if (order != null && input == working)
+            {
+                var scriptKeys = new HashSet<string>(StringComparer.Ordinal);
+                foreach (ScriptOrder.Entry e in order.Entries)
+                {
+                    scriptKeys.Add(e.Key);
+                }
+                foreach (string key in fromWorkingEnglish)
+                {
+                    if (!scriptKeys.Contains(key) && !publishedKeys.Contains(key))
+                    {
+                        stale++;
+                    }
+                }
+            }
             using (var writer = new StreamWriter(path, append: false, new UTF8Encoding(false)))
             {
                 writer.WriteLine("key,section,node,order,speaker,translation");
@@ -416,9 +502,11 @@ namespace DragNWashLocalization
                 }
             }
 
-            string from = input == working ? " from the working copy" : string.Empty;
+            string from = input == working ? $" from the working copy ({fromPublished} row(s) kept from the published file)" : string.Empty;
             string ordered = order == null ? " No script order data found, so rows keep their input order." : $" Ordered by {Path.GetFileName(Path.GetDirectoryName(order.Source))}/script_order.csv.";
-            return $"[hash] {locale}/strings.csv written{from}: {converted} row(s) converted from English, {kept} already hashed, {lineKept} per-line, {dropped} malformed dropped. No source text in the published file.{ordered}";
+            string droppedDetail = droppedExamples.Count > 0 ? $" Dropped: {string.Join("; ", droppedExamples)}{(dropped > droppedExamples.Count ? "; ..." : "")}." : string.Empty;
+            string staleDetail = stale > 0 ? $" {stale} row(s) of the working copy have English that is neither in the game's script nor in the published file; if the game was updated since the working copy was written, export it again." : string.Empty;
+            return $"[hash] {locale}/strings.csv written{from}: {converted} row(s) converted from English, {kept} already hashed, {lineKept} per-line, {dropped} malformed dropped. No source text in the published file.{ordered}{droppedDetail}{staleDetail}";
         }
 
         // "# ..." lines directly under the header line, up to the first line
