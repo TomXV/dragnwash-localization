@@ -229,6 +229,7 @@ namespace DragNWashLocalization
 
             Head("CREDITS");
             Body("Created by TomXV. Translation files by TomXV, with corrections from contributors credited in the README and in each language file.");
+            Body("Logo by Mister ERIO, who also drew the framework's Mods button.");
             Body("Source, issues and translation contributions: github.com/TomXV/dragnwash-localization");
             Body("");
 

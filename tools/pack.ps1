@@ -16,7 +16,7 @@
 #   release/DragNWashLocalization-<version>.zip
 #     BepInEx/plugins/DragNWash.ModFramework*/<the framework and its libraries>.dll
 #     BepInEx/patchers/DragNWash.ModFramework.Preloader.dll
-#     BepInEx/plugins/DragNWashLocalization/DragNWashLocalization.dll
+#     BepInEx/plugins/DragNWashLocalization/DragNWashLocalization.dll, icon.png
 #     BepInEx/plugins/DragNWashLocalization/FlagCatalog.csv
 #     BepInEx/plugins/DragNWashLocalization/dragnwash-menufont.bundle
 #     BepInEx/plugins/DragNWashLocalization/dragnwash-menufont-LICENSE.txt
@@ -165,11 +165,15 @@ $FrameworkLicense = Join-Path $FrameworkPath 'LICENSE'
 if (Test-Path -LiteralPath $FrameworkLicense) {
     Copy-Item -LiteralPath $FrameworkLicense -Destination (Join-Path $Stage 'BepInEx/plugins/DragNWash.ModFramework/LICENSE.txt')
 }
-# The framework's icon on the Mods screen.
-$FrameworkIcon = Join-Path $FrameworkPath 'src/DragNWash.ModFramework/icon.png'
-if (Test-Path -LiteralPath $FrameworkIcon) {
-    Copy-Item -LiteralPath $FrameworkIcon -Destination (Join-Path $Stage 'BepInEx/plugins/DragNWash.ModFramework')
+# The framework's icon on the Mods screen, and its Mods button artwork.
+foreach ($art in 'icon.png', 'ModsButton0.png', 'ModsButton1.png') {
+    $FrameworkArt = Join-Path $FrameworkPath "src/DragNWash.ModFramework/$art"
+    if (Test-Path -LiteralPath $FrameworkArt) {
+        Copy-Item -LiteralPath $FrameworkArt -Destination (Join-Path $Stage 'BepInEx/plugins/DragNWash.ModFramework')
+    }
 }
+# This mod's icon on the Mods screen (the logo by Mister ERIO).
+Copy-Item -LiteralPath (Join-Path $Root 'src/DragNWashLocalization/icon.png') -Destination $PluginDir
 Copy-Item -LiteralPath (Join-Path $Root 'FlagCatalog.csv') -Destination $PluginDir
 # Menu font for systems whose OS fonts have no CJK glyphs (Steam Deck).
 Copy-Item -LiteralPath (Join-Path $Root 'assets/menufont/dragnwash-menufont.bundle') -Destination $PluginDir

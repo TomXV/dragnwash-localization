@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using DragNWash.ModFramework;
 
 namespace DragNWashLocalization
@@ -22,6 +23,8 @@ namespace DragNWashLocalization
                     Website = "https://github.com/TomXV/dragnwash-localization",
                     // The Mods screen tells players when a newer release is out.
                     UpdateRepository = "TomXV/dragnwash-localization",
+                    // The logo Mister ERIO drew for this mod, next to the DLL.
+                    IconPath = Path.Combine(Path.GetDirectoryName(typeof(ModFrameworkInfo).Assembly.Location) ?? "", "icon.png"),
                     // The framework may reload this DLL while the game runs
                     // (developer tools): Harmony ID = GUID, everything registered
                     // through the framework, and OnDestroy cleans up (GUIDE rule 10).

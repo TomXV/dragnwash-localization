@@ -16,6 +16,11 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- The mod's icon on the Mods screen: the logo Mister ERIO drew for it. -->
+  <ItemGroup>
+    <None Include="icon.png" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <!--
     These reference assemblies are NOT committed to the repo (see libs/.gitignore-equivalent
     rule in the top-level .gitignore). To build locally, copy them from your own game install:

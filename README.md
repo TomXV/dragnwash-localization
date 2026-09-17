@@ -342,6 +342,12 @@ Because the game-derived reference assemblies cannot be committed, releases are 
 
 This is an unofficial fan project and is not affiliated with Gator Dragon Games. It contains no game assets and no script text: English lines are stored only as SHA-256 hashes, and the game's files are never modified (BepInEx loads the plugin at runtime). If you are a member of the development team and have any concerns, please open an issue on this repository or contact the maintainer, and the project will be adjusted or taken down as you prefer.
 
+## Credits
+
+- The mod's **logo** (its icon on the Mods screen, `icon.png`) was drawn by **Mister ERIO** ([@mistererio](https://github.com/mistererio)) and is used with permission.
+- The Options screen's **Mods button** that ships with Drag'n Wash ModFramework is Mister ERIO's work too.
+- Translators who improved a language pack are credited in the [Language packs](#language-packs) table.
+
 ## License
 
-See [LICENSE](LICENSE) for the plugin's code license. This repository does not include assets or code from the game. Translations are treated as contributions from their respective translators.
+See [LICENSE](LICENSE) for the plugin's code license. The artwork under [Credits](#credits) belongs to its artist and is not covered by it. This repository does not include assets or code from the game. Translations are treated as contributions from their respective translators.
