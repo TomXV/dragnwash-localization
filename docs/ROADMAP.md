@@ -34,6 +34,12 @@ Mods that add their own text (new mechanics, UI, dialogue) should be translatabl
 - Other mods are tested when their authors ask.
 - Design: [docs/MOD_TRANSLATIONS.md](MOD_TRANSLATIONS.md). Status: **designed, not built yet.**
 
+### Translated pictures ([#4](https://github.com/TomXV/dragnwash-localization/issues/4))
+
+Menu buttons, the loading screen's door sign and the signs on the walls are pictures. Under the framework's content policy, this repository will carry pictures drawn by hand or changed from the game's, per language, with the artists credited. A setting turns them off; on Direct3D 12 they change after a restart. The framework gets language-specific texture replacements for it.
+
+- Design: [docs/TRANSLATED_TEXTURES.md](TRANSLATED_TEXTURES.md). Status: **designed, not built yet.**
+
 ### Native-speaker reviews
 
 German, French, Spanish, Brazilian Portuguese, Russian, Polish, Hebrew, Ukrainian, Thai, Vietnamese and Traditional Chinese are still provisional. Corrections are welcome as pull requests at any time; each reviewer is credited ([CONTRIBUTING.md](../CONTRIBUTING.md#credits-for-contributors)).
@@ -42,10 +48,6 @@ German, French, Spanish, Brazilian Portuguese, Russian, Polish, Hebrew, Ukrainia
 
 - Steam Deck: typing in the F1 window with the on-screen keyboard.
 - macOS: waiting on BepInEx's Doorstop, which cannot hook Unity 6.3 yet ([UnityDoorstop#108](https://github.com/NeighTools/UnityDoorstop/issues/108)).
-
-## Open questions
-
-- **Translated textures** ([#4](https://github.com/TomXV/dragnwash-localization/issues/4)): menu buttons, the loading screen and the wall signs are pictures. The framework can already replace textures with PNGs. Translated versions follow the framework's [content policy](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.md): art drawn by hand or changed from the game's is fine, the game's own images unchanged are not.
 
 ## Not planned
 

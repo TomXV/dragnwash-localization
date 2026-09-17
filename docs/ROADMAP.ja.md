@@ -34,6 +34,12 @@ Drag'n Wash Localization のこれからの予定です。予定は変わるこ�
 - 他の Mod は、その作者から頼まれたときに試します。
 - 設計：[docs/MOD_TRANSLATIONS.ja.md](MOD_TRANSLATIONS.ja.md)。状況：**設計済み、未実装。**
 
+### 絵の翻訳（[#4](https://github.com/TomXV/dragnwash-localization/issues/4)）
+
+メニューのボタン、ロード画面の扉の札、壁の看板は絵です。フレームワークのコンテンツポリシーに基づき、手で描いた絵やゲームの絵に手を加えたものを、言語ごとにこのリポジトリに入れます。描いた人はクレジットに載せます。設定でオフにでき、Direct3D 12 では再起動後に切り替わります。そのために、フレームワークに言語ごとのテクスチャの差し替えを足します。
+
+- 設計：[docs/TRANSLATED_TEXTURES.ja.md](TRANSLATED_TEXTURES.ja.md)。状況：**設計済み、未実装。**
+
 ### 母語話者による確認
 
 ドイツ語、フランス語、スペイン語、ブラジルポルトガル語、ロシア語、ポーランド語、ヘブライ語、ウクライナ語、タイ語、ベトナム語、繁体字中国語は、まだ仮翻訳です。修正のプルリクエストはいつでも歓迎します。確認してくださった方はクレジットに載せます（[CONTRIBUTING.ja.md](../CONTRIBUTING.ja.md)）。
@@ -42,10 +48,6 @@ Drag'n Wash Localization のこれからの予定です。予定は変わるこ�
 
 - Steam Deck：F1 の窓で、画面キーボードで文字を入力できるか。
 - macOS：BepInEx の Doorstop が Unity 6.3 にフックできるようになるのを待っています（[UnityDoorstop#108](https://github.com/NeighTools/UnityDoorstop/issues/108)）。
-
-## 決まっていないこと
-
-- **テクスチャの翻訳**（[#4](https://github.com/TomXV/dragnwash-localization/issues/4)）：メニューのボタン、ロード画面、壁の看板は絵です。フレームワークでは、すでに PNG でテクスチャを差し替えられます。訳した絵は、フレームワークの[コンテンツポリシー](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.ja.md)に従います。手で描いたものやゲームの絵に手を加えたものはよく、ゲームの絵をそのまま入れることはしません。
 
 ## 予定していないこと
 
