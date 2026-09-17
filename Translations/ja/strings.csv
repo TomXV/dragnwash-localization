@@ -1911,7 +1911,7 @@ d57274b504a45b33,UI,,,UI,BepInEx/plugins の外に入っているため、ここ
 fd35647f8ecb2f7d,UI,,,UI,必要としている Mod
 9e6151acb057025d,UI,,,UI,使っている Mod
 b9d0dd131d07b5ad,UI,,,UI,Drag'n Wash の Mod で共通して使う機能をまとめたものです。この Mods 画面もその 1 つです。
-1236e3be635f17c7,UI,,,UI,Drag'n Wash を 16 言語で遊べるようにします。台詞、選択肢、UI、設定を翻訳します。
+6b4075522b85ca52,UI,,,UI,Drag'n Wash をいろいろな言語で遊べるようにします。台詞、選択肢、UI、設定を翻訳します。
 1cd1ca858aaea1d0,UI,,,UI,読み込まれていません。必要な Mod：
 eda662e0b5033180,UI,,,UI,読み込まれていません。一緒に使えない Mod：
 a8d12a246b72d98c,UI,,,UI,読み込まれていません。理由は BepInEx/LogOutput.log を確認してください。

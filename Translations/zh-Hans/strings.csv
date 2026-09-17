@@ -1893,7 +1893,7 @@ d57274b504a45b33,UI,,,UI,安装在 BepInEx/plugins 之外，无法在此关闭
 fd35647f8ecb2f7d,UI,,,UI,需要它的模组
 9e6151acb057025d,UI,,,UI,使用的模组
 b9d0dd131d07b5ad,UI,,,UI,Drag'n Wash 模组共用的工具，包括这个模组界面。
-1236e3be635f17c7,UI,,,UI,让 Drag'n Wash 支持 16 种语言。翻译对话、选项、界面和设置。
+6b4075522b85ca52,UI,,,UI,让 Drag'n Wash 支持多种语言。翻译对话、选项、界面和设置。
 1cd1ca858aaea1d0,UI,,,UI,未加载。需要：
 eda662e0b5033180,UI,,,UI,未加载。无法与以下模组同时使用：
 a8d12a246b72d98c,UI,,,UI,未加载。原因请查看 BepInEx/LogOutput.log。

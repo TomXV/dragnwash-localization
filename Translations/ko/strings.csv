@@ -1906,7 +1906,7 @@ d57274b504a45b33,UI,,,UI,BepInEx/plugins 밖에 설치되어 있어 여기서는
 fd35647f8ecb2f7d,UI,,,UI,필요로 하는 모드
 9e6151acb057025d,UI,,,UI,사용하는 모드
 b9d0dd131d07b5ad,UI,,,UI,Drag'n Wash 모드들이 함께 쓰는 기능 모음입니다. 이 모드 화면도 그중 하나입니다.
-1236e3be635f17c7,UI,,,UI,"Drag'n Wash를 16개 언어로 즐길 수 있게 합니다. 대사, 선택지, UI, 설정을 번역합니다."
+6b4075522b85ca52,UI,,,UI,"Drag'n Wash를 여러 언어로 즐길 수 있게 합니다. 대사, 선택지, UI, 설정을 번역합니다."
 1cd1ca858aaea1d0,UI,,,UI,로드되지 않았습니다. 필요한 모드:
 eda662e0b5033180,UI,,,UI,로드되지 않았습니다. 함께 쓸 수 없는 모드:
 a8d12a246b72d98c,UI,,,UI,로드되지 않았습니다. 이유는 BepInEx/LogOutput.log에서 확인하세요.

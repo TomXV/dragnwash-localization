@@ -8,7 +8,7 @@ namespace DragNWashLocalization
     internal static class ModFrameworkInfo
     {
         // Shown on the Mods screen; translation packs key it by this exact English.
-        internal const string Description = "Play Drag'n Wash in 13 languages. Translates dialogue, choices, UI and options.";
+        internal const string Description = "Play Drag'n Wash in many languages. Translates dialogue, choices, UI and options.";
 
         internal static void Register()
         {
