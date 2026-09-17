@@ -24,11 +24,15 @@ Translations/
       MenuButtons0001.png      ← 差し替えるゲームのテクスチャの名前
       Reception.png
       credits.csv              ← それぞれの絵を作った人
+  zh-Hant/
+    textures/
+      fallback.txt             ← 任意：zh-Hans
 ```
 
 - **名前。** フレームワークの Assets タブに出る、ゲームのテクスチャの名前にします。大きさは元と同じにします（スプライトは元の範囲を保つため）。
 - **credits.csv。** `file,author,note` の形で、PNG 1 つにつき 1 行。`note` には何をしたかを書きます（`一から描いた`、`ゲームのテクスチャを描き直した`）。すべての PNG に行が必要です。
 - **形式。** PNG。1 枚につき 4096×4096 以内、8 MB 以内。
+- **フォールバック。** その言語に絵がないテクスチャは、次の順で代わりを探します。`textures/fallback.txt` に書いた言語（1 行に 1 つ。例：`zh-Hant` の代わりに `zh-Hans`）、別の Mod の普通の差し替え、ゲームの元の絵。読み込めない PNG も同じ順で代わりになります。`fallback.txt` がなければ、絵のないものはゲームの元の絵のままです。
 - **入れてはいけないもの。** ゲームのテクスチャに手を加えていない PNG。
 - **CI の確認**（`tools/check-translations.py`）。
   - `textures/` には PNG と credits.csv だけ。

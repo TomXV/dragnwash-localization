@@ -24,11 +24,15 @@ Translations/
       MenuButtons0001.png      ← named after the game texture it replaces
       Reception.png
       credits.csv              ← who made each picture
+  zh-Hant/
+    textures/
+      fallback.txt             ← optional: zh-Hans
 ```
 
 - **Name.** The file is named after the game texture, as the framework's Assets tab lists it. The size should match the original (a sprite keeps its rect).
 - **credits.csv.** `file,author,note`, one row per PNG. `note` says what was done (`drawn from scratch`, `game texture repainted`). Every PNG needs a row.
 - **Format.** PNG, at most 4096×4096 and 8 MB each.
+- **Fallback.** A texture the language has no picture for falls back, in this order: the languages listed in `textures/fallback.txt` (one locale per line, for example `zh-Hans` for `zh-Hant`), another mod's plain replacement, the game's own picture. A PNG that cannot be loaded falls back the same way. Without a `fallback.txt`, a missing picture is simply the game's.
 - **Not allowed.** A PNG that is the game's texture unchanged.
 - **Checks in CI** (`tools/check-translations.py`). Only PNGs and credits.csv in `textures/`; each PNG is a real PNG within the size limits; every PNG has a row in credits.csv with an author and a note, and every row has a PNG. Once the framework's asset fingerprints exist, a PNG identical to an untouched export is refused too. Whether a name matches a game texture is not checked here: the Assets tab lists a picture that applied nowhere.
 - **Release.** `tools/pack.ps1` copies `textures/` with each locale.

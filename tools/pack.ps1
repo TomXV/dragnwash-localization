@@ -204,13 +204,13 @@ Get-ChildItem -LiteralPath $SrcTranslations -Directory |
         Copy-Item -LiteralPath (Join-Path $_.FullName 'strings.csv') -Destination $dest
         $nameFile = Join-Path $_.FullName 'name.txt'
         if (Test-Path -LiteralPath $nameFile) { Copy-Item -LiteralPath $nameFile -Destination $dest }
-        # Translated pictures (docs/TRANSLATED_TEXTURES.md): the PNGs and their credits.
+        # Translated pictures (docs/TRANSLATED_TEXTURES.md): the PNGs, their credits and the fallback list.
         $textures = Join-Path $_.FullName 'textures'
         if (Test-Path -LiteralPath $textures) {
             $destTextures = Join-Path $dest 'textures'
             New-Item -ItemType Directory -Force -Path $destTextures | Out-Null
             Get-ChildItem -LiteralPath $textures -File |
-                Where-Object { $_.Extension -eq '.png' -or $_.Name -eq 'credits.csv' } |
+                Where-Object { $_.Extension -eq '.png' -or $_.Name -eq 'credits.csv' -or $_.Name -eq 'fallback.txt' } |
                 ForEach-Object { Copy-Item -LiteralPath $_.FullName -Destination $destTextures }
         }
     }

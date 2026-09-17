@@ -18,7 +18,8 @@ copies there carry the game's script in plain English.
 
 Translated pictures in Translations/<locale>/textures/ (docs/TRANSLATED_TEXTURES.md)
 must be PNG files of at most 4096x4096 and 8 MB, each with a row in
-textures/credits.csv (file,author,note), and nothing else may be there.
+textures/credits.csv (file,author,note); textures/fallback.txt may name other
+locales to borrow missing pictures from; nothing else may be there.
 """
 import csv
 import io
@@ -150,6 +151,21 @@ MAX_PICTURE_SIDE = 4096
 MAX_PICTURE_BYTES = 8 * 1024 * 1024
 
 
+def check_fallback(file: Path, locale_dir: Path) -> list:
+    problems = []
+    lines = file.read_text(encoding="utf-8-sig").splitlines()
+    for i, line in enumerate(lines, start=1):
+        name = line.strip()
+        if not name or name.startswith("#"):
+            continue
+        other = TRANSLATIONS / name
+        if name == locale_dir.name:
+            problems.append(f"{display(file)}:{i}: {name} is this language itself")
+        elif name.startswith("_") or "/" in name or "\\" in name or not (other / "strings.csv").is_file():
+            problems.append(f"{display(file)}:{i}: {name} is not a language in Translations/")
+    return problems
+
+
 def check_textures(textures: Path) -> list:
     problems = []
     pngs = {}
@@ -158,8 +174,10 @@ def check_textures(textures: Path) -> list:
             problems.append(f"{display(f)}: no folders inside textures/")
         elif f.suffix.lower() == ".png":
             pngs[f.name] = f
+        elif f.name == "fallback.txt":
+            problems.extend(check_fallback(f, textures.parent))
         elif f.name != "credits.csv":
-            problems.append(f"{display(f)}: only .png files and credits.csv belong in textures/")
+            problems.append(f"{display(f)}: only .png files, credits.csv and fallback.txt belong in textures/")
     for name, f in pngs.items():
         if f.suffix != ".png":
             problems.append(f"{display(f)}: use a lowercase .png extension")
