@@ -2,7 +2,7 @@
 
 [English](TRANSLATED_TEXTURES.md)
 
-2026-09-18 に `experimental/translated-textures` ブランチで作成。**設計で、まだ作っていません。** きっかけは [#4](https://github.com/TomXV/dragnwash-localization/issues/4) です。ゲームの文字の一部は絵になっています（メニューのボタン、ロード画面の扉の札、壁の看板）。
+2026-09-18 に `experimental/translated-textures` ブランチで作成。**そのブランチで実装済み（フレームワークは `experimental/language-textures` の Assets 1.2.0）。ゲームでの確認はまだです。** きっかけは [#4](https://github.com/TomXV/dragnwash-localization/issues/4) です。ゲームの文字の一部は絵になっています（メニューのボタン、ロード画面の扉の札、壁の看板）。
 
 ## 変わったこと
 
@@ -12,7 +12,7 @@ Drag'n Wash ModFramework の[コンテンツポリシー](https://github.com/Tom
 
 - 文字の入った絵が、選んだ言語で表示されます（その言語の絵があるものだけ。ないものはゲームの絵のまま）。
 - **Options → Mods → Drag'n Wash Localization → Settings → Translate pictures**（既定はオン）で、絵の翻訳だけをオフにできます。
-- 言語を変えると、絵もすぐに変わります。ただし **Direct3D 12** では、ゲームを動かしたまま絵を読み込むと落ちることがあるので（Unity UUM-140564）、絵が変わるのは次にゲームを起動したときです。Options 画面にそう出します。
+- 言語を変えると、絵もすぐに変わります。ただし **Direct3D 12** では、ゲームを動かしたまま絵を読み込むと落ちることがあるので（Unity UUM-140564）、絵が変わるのは次にゲームを起動したときです。設定の説明文にそう書き、切り替えのたびにログにも出します。
 
 ## リポジトリの中
 
@@ -30,11 +30,12 @@ Translations/
 - **credits.csv。** `file,author,note` の形で、PNG 1 つにつき 1 行。`note` には何をしたかを書きます（`一から描いた`、`ゲームのテクスチャを描き直した`）。すべての PNG に行が必要です。
 - **形式。** PNG。1 枚につき 4096×4096 以内、8 MB 以内。
 - **入れてはいけないもの。** ゲームのテクスチャに手を加えていない PNG。
-- **CI の確認。**
-  - すべての PNG に credits.csv の行があり、すべての行に PNG があること。
-  - 大きさの上限。
-  - 既知のテクスチャ一覧にない名前には警告を出す（ゲームの更新で増えたものかもしれないため）。
-  - フレームワークのアセットの指紋ができたら、手を加えていない書き出しと同じ PNG を拒否する。
+- **CI の確認**（`tools/check-translations.py`）。
+  - `textures/` には PNG と credits.csv だけ。
+  - PNG は本物の PNG で、大きさの上限以内。
+  - すべての PNG に、作った人と説明のある credits.csv の行があり、すべての行に PNG があること。
+  - フレームワークのアセットの指紋ができたら、手を加えていない書き出しと同じ PNG も拒否する。
+  - 名前がゲームのテクスチャと合っているかは、ここでは確かめません。どこにも当たらなかった絵は Assets タブに出ます。
 - **リリース。** `tools/pack.ps1` が、言語ごとに `textures/` もコピーします。
 - **クレジット。** README のクレジットに、翻訳者と同じく言語ごとに絵を作った人を載せます。
 
@@ -62,6 +63,6 @@ Translations/
 ## 作る順番
 
 1. フレームワーク：言語フォルダー、元に戻す処理、再起動待ちの言語、Assets タブの言語の列（Assets ライブラリのマイナーバージョン）。
-2. Localization：設定、`AddLanguageFolder`、Direct3D 12 での Options の案内、pack.ps1、CI の確認、CONTRIBUTING の説明。
+2. Localization：設定（`[General] TranslatePictures`）、`AddLanguageFolder`、Direct3D 12 での案内、pack.ps1、CI の確認、CONTRIBUTING の説明。Assets ライブラリが 1.2.0 より古いときは、絵なしで動きます。
 3. 1 枚の絵で、Direct3D 11、Vulkan（Steam Deck）、Direct3D 12（再起動の流れ）を試す。
 4. 最初の絵は、協力してくれる人から。

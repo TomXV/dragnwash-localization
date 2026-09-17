@@ -46,6 +46,7 @@ namespace DragNWashLocalization
         internal static ConfigEntry<KeyboardShortcut> DumpUiTextKey;
         internal static ConfigEntry<double> LayoutRiskThreshold;
         internal static ConfigEntry<bool> HotReloadTranslations;
+        internal static ConfigEntry<bool> TranslatePictures;
         internal static string PluginDirectory;
 
         private static Plugin _instance;
@@ -185,11 +186,20 @@ namespace DragNWashLocalization
                 true,
                 "Reload the current language's strings.csv when it is saved and apply it on screen without restarting the game.");
 
+            TranslatePictures = Config.Bind(
+                "General",
+                "TranslatePictures",
+                true,
+                new ConfigDescription(
+                    "Shows pictures with text (menu buttons, signs) in the chosen language, where the language has them. On Direct3D 12 the pictures change the next time the game starts after a language change.",
+                    null, new SettingMeta { DisplayName = "Translate pictures" }));
+
             _committedLocale = TargetLocale.Value;
             RightToLeft.SetLocale(TargetLocale.Value);
             TranslationStore.Load(PluginDirectory, TargetLocale.Value);
             RefreshAvailableLocales();
             PrepareFonts();
+            SetUpPictures();
             HotReload.Track(PluginDirectory, TargetLocale.Value);
 
             // Save snapshots used to live next to the plugin; the saves library
@@ -245,6 +255,54 @@ namespace DragNWashLocalization
             // The current locale last, so its texts also cover anything a
             // translator has in memory that is not in the file on disk yet.
             GameFonts.Prepare(TargetLocale.Value, TranslationStore.TranslatedTexts);
+        }
+
+        // Translated pictures: Translations/<locale>/textures/<game texture>.png,
+        // applied by the framework's Assets library (1.2.0 and later) for the
+        // language in use. An older Assets library has no such call; the mod
+        // then runs without pictures.
+        private void SetUpPictures()
+        {
+            try
+            {
+                AddPictureFolder();
+                TranslatePictures.SettingChanged += (sender, args) => SetPicturesOn(TranslatePictures.Value);
+            }
+            catch (MissingMethodException)
+            {
+                Log("[pictures] The framework's Assets library is older than 1.2.0; translated pictures are not shown.");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"Translated pictures could not be set up: {ex}");
+            }
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private void AddPictureFolder()
+        {
+            AssetReplacements.AddLanguageFolder(PluginGuid, Path.Combine(PluginDirectory, "Translations"), "textures");
+            if (!TranslatePictures.Value)
+            {
+                AssetReplacements.SetLanguageFoldersEnabled(PluginGuid, false);
+            }
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private static void SetPicturesOn(bool on)
+        {
+            AssetReplacements.SetLanguageFoldersEnabled(PluginGuid, on);
+            NotePendingPictures();
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private static void NotePendingPictures()
+        {
+            string pending = AssetReplacements.PendingLanguage;
+            if (pending != null)
+            {
+                Log($"[pictures] Pictures for {pending} are shown after the game restarts (Direct3D 12 cannot load them while the game runs).");
+            }
         }
 
         // The tool window draws the activity log (translated text), the language
@@ -368,6 +426,13 @@ namespace DragNWashLocalization
                 RightToLeft.SetLocale(locale);
                 TranslationStore.Load(PluginDirectory, locale);
                 GameFonts.SetLanguage(locale);
+                try
+                {
+                    NotePendingPictures();
+                }
+                catch (MissingMethodException)
+                {
+                }
                 // On Direct3D 12 the fonts were all prepared at startup and this
                 // only reorders the fallback chain. Elsewhere a language seen for
                 // the first time is prepared here, in Update, in one batch.

@@ -2,7 +2,7 @@
 
 [日本語](TRANSLATED_TEXTURES.ja.md)
 
-Written 2026-09-18 on the `experimental/translated-textures` branch. **Design; not built yet.** From [#4](https://github.com/TomXV/dragnwash-localization/issues/4): some of the game's text is in pictures (menu buttons, the loading screen's door sign, the signs on the walls).
+Written 2026-09-18 on the `experimental/translated-textures` branch. **Built on that branch (framework Assets 1.2.0 on `experimental/language-textures`), not tested in the game yet.** From [#4](https://github.com/TomXV/dragnwash-localization/issues/4): some of the game's text is in pictures (menu buttons, the loading screen's door sign, the signs on the walls).
 
 ## What changed
 
@@ -12,7 +12,7 @@ Under Drag'n Wash ModFramework's [content policy](https://github.com/TomXV/dragn
 
 - Pictures with text show in the chosen language, where a language has them. Otherwise the game's picture stays.
 - **Options → Mods → Drag'n Wash Localization → Settings → Translate pictures** (on by default) turns them off.
-- Changing the language changes the pictures at once. On **Direct3D 12**, loading a picture while the game runs can crash it (Unity UUM-140564), so there the pictures change the next time the game starts, and the Options screen says so.
+- Changing the language changes the pictures at once. On **Direct3D 12**, loading a picture while the game runs can crash it (Unity UUM-140564), so there the pictures change the next time the game starts. The setting's description says so, and the log notes it on each change.
 
 ## In the repository
 
@@ -30,7 +30,7 @@ Translations/
 - **credits.csv.** `file,author,note`, one row per PNG. `note` says what was done (`drawn from scratch`, `game texture repainted`). Every PNG needs a row.
 - **Format.** PNG, at most 4096×4096 and 8 MB each.
 - **Not allowed.** A PNG that is the game's texture unchanged.
-- **Checks in CI.** Every PNG has a row in credits.csv and every row has a PNG; size limits; names that are not in the known texture list get a warning (they may be new in a game update); once the framework's asset fingerprints exist, a PNG identical to an untouched export is refused.
+- **Checks in CI** (`tools/check-translations.py`). Only PNGs and credits.csv in `textures/`; each PNG is a real PNG within the size limits; every PNG has a row in credits.csv with an author and a note, and every row has a PNG. Once the framework's asset fingerprints exist, a PNG identical to an untouched export is refused too. Whether a name matches a game texture is not checked here: the Assets tab lists a picture that applied nowhere.
 - **Release.** `tools/pack.ps1` copies `textures/` with each locale.
 - **Credits.** The README's credits name the artists per language, as for translators.
 
@@ -58,6 +58,6 @@ The framework replaces textures by name from `<mod>/assets/textures/`, for every
 ## Order of work
 
 1. Framework: language folders, taking back, pending language, Assets tab column (Assets library, minor version).
-2. Localization: the setting, `AddLanguageFolder`, the Options note on Direct3D 12, pack.ps1, CI checks, CONTRIBUTING section.
+2. Localization: the setting (`[General] TranslatePictures`), `AddLanguageFolder`, the note on Direct3D 12, pack.ps1, CI checks, CONTRIBUTING section. With an Assets library older than 1.2.0 the mod runs without pictures.
 3. Test with one picture on Direct3D 11, Vulkan (Steam Deck) and Direct3D 12 (restart path).
 4. First pictures, from contributors.

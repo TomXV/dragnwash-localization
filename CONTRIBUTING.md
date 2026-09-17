@@ -206,9 +206,13 @@ The check does not compare formatting tags with the source; reviewers look at th
 
 **Spreadsheet apps can break the file on save.** Excel may turn keys that look like numbers (for example `12345e6789012345`) into scientific notation, change the encoding, or change quoting. Prefer a text editor such as VS Code, or LibreOffice with every column set to *Text*, and save as UTF-8 CSV.
 
+## Translated pictures
+
+Some text is in pictures (menu buttons, signs). A translated picture goes in `Translations/<locale>/textures/<game texture name>.png`, with a row in `textures/credits.csv` (`file,author,note`). Draw it by hand, or change the game's picture; never commit the game's picture unchanged ([content policy](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.md)). The steps are in [docs/TRANSLATED_TEXTURES.md](docs/TRANSLATED_TEXTURES.md#for-translators).
+
 ## Rules
 
-- Never commit the game's assets or code (copyright).
+- Never commit the game's assets or code unchanged ([content policy](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.md)). Pictures you drew or changed are welcome (see above).
 - Never commit `Translations/_discovered/`.
 - Translations are credited to their translators (see [LICENSE](LICENSE)).
 

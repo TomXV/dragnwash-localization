@@ -245,9 +245,13 @@ python tools/check-translations.py
 
 **表計算ソフトは、保存するときにファイルを壊すことがあります。** Excel は、数字に見える key（例: `12345e6789012345`）を指数表記に変えたり、文字コードやクォートを変えたりすることがあります。VS Code などのテキストエディタか、すべての列を「テキスト」にした LibreOffice を使い、UTF-8 の CSV で保存してください。
 
+## 絵の翻訳
+
+文字の一部は絵になっています（メニューのボタン、看板）。訳した絵は `Translations/<locale>/textures/<ゲームのテクスチャ名>.png` に置き、`textures/credits.csv`（`file,author,note`）に行を足します。手で描くか、ゲームの絵に手を加えてください。ゲームの絵をそのままコミットしてはいけません（[コンテンツポリシー](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.ja.md)）。手順は [docs/TRANSLATED_TEXTURES.ja.md](docs/TRANSLATED_TEXTURES.ja.md#翻訳する人の手順) にあります。
+
 ## ルール
 
-- ゲーム本体のアセット・コードはコミットしない（著作権保護のため）。
+- ゲーム本体のアセット・コードを、手を加えずにそのままコミットしない（[コンテンツポリシー](https://github.com/TomXV/dragnwash-modframework/blob/main/docs/CONTENT_POLICY.ja.md)）。自分で描いた絵や手を加えた絵は歓迎します（上を参照）。
 - `Translations/_discovered/` はコミットしない。
 - 翻訳文はそれぞれの翻訳者の貢献として扱います（ライセンスは [LICENSE](LICENSE) 参照）。
 

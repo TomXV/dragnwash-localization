@@ -15,6 +15,10 @@ A published Translations/<locale>/strings.csv must:
   - contain no English source text (a source_en column is the tell)
 and nothing under Translations/_discovered/ may be committed - the working
 copies there carry the game's script in plain English.
+
+Translated pictures in Translations/<locale>/textures/ (docs/TRANSLATED_TEXTURES.md)
+must be PNG files of at most 4096x4096 and 8 MB, each with a row in
+textures/credits.csv (file,author,note), and nothing else may be there.
 """
 import csv
 import io
@@ -141,6 +145,68 @@ def is_tracked(path: Path) -> bool:
         return path.exists()
 
 
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+MAX_PICTURE_SIDE = 4096
+MAX_PICTURE_BYTES = 8 * 1024 * 1024
+
+
+def check_textures(textures: Path) -> list:
+    problems = []
+    pngs = {}
+    for f in sorted(textures.iterdir()):
+        if f.is_dir():
+            problems.append(f"{display(f)}: no folders inside textures/")
+        elif f.suffix.lower() == ".png":
+            pngs[f.name] = f
+        elif f.name != "credits.csv":
+            problems.append(f"{display(f)}: only .png files and credits.csv belong in textures/")
+    for name, f in pngs.items():
+        if f.suffix != ".png":
+            problems.append(f"{display(f)}: use a lowercase .png extension")
+        size = f.stat().st_size
+        if size > MAX_PICTURE_BYTES:
+            problems.append(f"{display(f)}: {size // 1024} KB, more than {MAX_PICTURE_BYTES // 1048576} MB")
+        head = f.read_bytes()[:24]
+        if len(head) < 24 or head[:8] != PNG_SIGNATURE or head[12:16] != b"IHDR":
+            problems.append(f"{display(f)}: not a PNG file")
+            continue
+        width = int.from_bytes(head[16:20], "big")
+        height = int.from_bytes(head[20:24], "big")
+        if width > MAX_PICTURE_SIDE or height > MAX_PICTURE_SIDE:
+            problems.append(f"{display(f)}: {width}x{height}, larger than {MAX_PICTURE_SIDE}x{MAX_PICTURE_SIDE}")
+    credits = textures / "credits.csv"
+    credited = set()
+    if not credits.exists():
+        if pngs:
+            problems.append(f"{display(textures)}: credits.csv is missing (file,author,note - one row per picture)")
+        return problems
+    with open(credits, encoding="utf-8-sig", newline="") as fh:
+        rows = list(csv.reader(fh))
+    if not rows or [c.strip() for c in rows[0]] != ["file", "author", "note"]:
+        problems.append(f"{display(credits)}:1: the header must be file,author,note")
+        return problems
+    for i, row in enumerate(rows[1:], start=2):
+        if not row or not "".join(row).strip():
+            continue
+        if len(row) != 3:
+            problems.append(f"{display(credits)}:{i}: expected 3 columns (file,author,note), found {len(row)}")
+            continue
+        file, author, note = (c.strip() for c in row)
+        if file in credited:
+            problems.append(f"{display(credits)}:{i}: {file} is listed twice")
+        credited.add(file)
+        if file not in pngs:
+            problems.append(f"{display(credits)}:{i}: {file} is not in textures/")
+        if not author:
+            problems.append(f"{display(credits)}:{i}: who made {file}? (author is empty)")
+        if not note:
+            problems.append(f"{display(credits)}:{i}: say what was done for {file} (note is empty), for example: drawn from scratch, or game texture repainted")
+    for name in pngs:
+        if name not in credited:
+            problems.append(f"{display(pngs[name])}: no row in credits.csv")
+    return problems
+
+
 def main() -> int:
     problems = []
     discovered = TRANSLATIONS / "_discovered"
@@ -159,6 +225,9 @@ def main() -> int:
             problems.extend(check_file(strings))
         else:
             problems.append(f"{display(locale_dir)}: no strings.csv")
+        textures = locale_dir / "textures"
+        if textures.is_dir():
+            problems.extend(check_textures(textures))
     for p in problems:
         print(p)
     if problems:
