@@ -67,7 +67,7 @@ Rules:
 
 - **A row from a mod's pack never replaces a row from 1.** Same key, different translation: 1 is used and a conflict recorded (the same translation is simply ignored).
 - Two mods with different translations for one key: the one read first is used and a conflict recorded.
-- Conflicts go to the log and to a list in F1 → Translation. The Mods screen would be the better place, but the framework has no general per-mod notice yet; see [open questions](#open-questions).
+- Conflicts go to the log, to a list in F1 → Translation, and to the Mods screen as a notice under each mod involved ("3 translations differ from Drag'n Wash Localization"). The notice needs a per-mod notice in the framework; see [decisions](#decisions).
 
 ## Keeping failures contained
 
@@ -83,13 +83,14 @@ Only with developer tools on, as today.
 - **Hot reload** watches mod packs too.
 - **Exports**:
   - F6 already works per YarnProject; a project that is not the game's gets a `# ===== Mod: <project> =====` header.
-  - Which mod showed a UI string cannot be told reliably. At first there is no split; the existing `object_path` column is the hint.
+  - UI strings get a `mod` column in `_discovered/strings.csv` and the F7 export: the plugin that showed the string, found when an untranslated string is first recorded (see [decisions](#decisions)). Empty means the game, or that it could not be told.
 - **Hash for commit** stays for this mod's packs. A mod's pack is made with `tools/hash-strings.ps1 -Path`. Ordering by the script only knows the game's script, so a mod's rows end up together at the end.
 
 ## Steps for mod authors (draft)
 
 1. Show your mod's text in English through TextMeshPro's `text` or `SetText(string)`. That alone makes it translatable (IMGUI and legacy uGUI `Text` are not covered).
-2. Translators turn developer tools on, export with F7 (UI) and F6 (dialogue), pick your mod's rows and fill in `translation`.
+2. Translators turn developer tools on, export with F7 (UI) and F6 (dialogue), pick your mod's rows (the `mod` column for UI text, the `Mod:` header for dialogue) and fill in `translation`.
+   Dialogue is best keyed by line ID (`line:<id>` rows): those survive when you reword the English, rows keyed by the English text do not.
 3. Hash with `tools/hash-strings.ps1 -Path` and ship the result as `Translations/<locale>/strings.csv` with your mod.
 4. A translation made by machine or otherwise unreviewed says `Provisional` in its header comment, like this mod's provisional packs.
 5. Credits are your mod's.
@@ -106,12 +107,14 @@ Only with developer tools on, as today.
 
 It starts inside Localization, as a folder convention, with no framework API. If another localization mod appears and wants the same convention, finding the folders and recording conflicts moves to the framework's Text library.
 
-## Open questions
+## Decisions
 
-- Showing conflicts on the Mods screen needs a per-mod notice in the framework (`GameHooks.Unavailable` means "a feature cannot work" and is not reused).
-- Telling which mod a UI string came from. Looking at the calling assembly on every assignment is too heavy.
-- Whether `LineResolution` (finding a line again when its English changed) should cover mods' dialogue. There is no script-order data per mod, so not for now.
-- A language only a mod has, and this mod does not (not read for now).
+Settled on 2026-09-17.
+
+- **Conflicts on the Mods screen: yes.** The framework first gets a small per-mod notice (on its roadmap; `GameHooks.Unavailable` means "a feature cannot work" and is not reused). Localization then leaves a notice under each mod involved in a conflict. With an older framework that has no notices, conflicts still go to the log and F1.
+- **Which mod showed a UI string: told only when recording.** When developer tools are on and an untranslated string is recorded for the first time, the stack is walked once to find the first plugin assembly (as the framework's connection watch does), and its mod goes into the `mod` column. Showing text is never slowed down, and with developer tools off nothing is looked at.
+- **`LineResolution` for mods' dialogue: no.** It needs script-order data per mod. Mods' dialogue is keyed by line ID instead (`line:<id>` rows keep working when the English changes), and the steps for mod authors say so. A row keyed by English text falls back to English when the English changes.
+- **A language this mod does not have: not read.** The language list, names and fonts belong to this mod. A mod's folder for such a language is skipped with one line in the log. To add a language, a pack is added to this repository first.
 
 ## Plan for checking
 
