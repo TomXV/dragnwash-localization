@@ -2,7 +2,7 @@
 
 [English](MOD_TRANSLATIONS.md)
 
-作成日: 2026-09-17。**2026-09-19 に `experimental/mod-translations` ブランチで実装（β版・実験的、既定はオフ）。ゲームでの確認はまだです。Mods 画面へのお知らせは、フレームワークのお知らせ欄ができてから。** きっかけは [Issue #28](https://github.com/TomXV/dragnwash-localization/issues/28)（新しい仕組み・UI・会話を足す Mod のテキストは翻訳できるか）。
+作成日: 2026-09-17。**2026-09-19 に `experimental/mod-translations` ブランチで実装（β版・実験的、既定はオフ）。2026-09-19 に、テスト用の小さな Mod（自前のラベル、競合する行とこの Mod にない言語を含むパック）でゲームで確認しました。Mods 画面へのお知らせは、フレームワークのお知らせ欄ができてから。** きっかけは [Issue #28](https://github.com/TomXV/dragnwash-localization/issues/28)（新しい仕組み・UI・会話を足す Mod のテキストは翻訳できるか）。
 
 ## 結論
 

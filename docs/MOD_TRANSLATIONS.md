@@ -2,7 +2,7 @@
 
 [日本語](MOD_TRANSLATIONS.ja.md)
 
-Written 2026-09-17. **Built on the `experimental/mod-translations` branch on 2026-09-19 (beta, experimental, off by default); not tested in the game yet. The notice on the Mods screen waits for the framework's notice area.** It started from [issue #28](https://github.com/TomXV/dragnwash-localization/issues/28): can the text of a mod that adds mechanics, UI and dialogue be translated?
+Written 2026-09-17. **Built on the `experimental/mod-translations` branch on 2026-09-19 (beta, experimental, off by default); tested in the game on 2026-09-19 with a small test mod (its own label, a pack with a conflicting row and a language this mod does not have). The notice on the Mods screen waits for the framework's notice area.** It started from [issue #28](https://github.com/TomXV/dragnwash-localization/issues/28): can the text of a mod that adds mechanics, UI and dialogue be translated?
 
 ## In short
 
