@@ -2,7 +2,7 @@
 
 [日本語](TRANSLATED_TEXTURES.ja.md)
 
-Written 2026-09-18 on the `experimental/translated-textures` branch. **Built on that branch (framework Assets 1.2.0 on `experimental/language-textures`), not tested in the game yet.** From [#4](https://github.com/TomXV/dragnwash-localization/issues/4): some of the game's text is in pictures (menu buttons, the loading screen's door sign, the signs on the walls).
+Written 2026-09-18 on the `experimental/translated-textures` branch. **Built on that branch (framework Assets 1.2.0 on `experimental/language-textures`), tested in the game on 2026-09-19 (Direct3D 12, test pictures in place of the menu buttons: shown, turned off by the setting, the game's pictures back in another language, no crash).** From [#4](https://github.com/TomXV/dragnwash-localization/issues/4): some of the game's text is in pictures (menu buttons, the loading screen's door sign, the signs on the walls).
 
 ## What changed
 

@@ -2,7 +2,7 @@
 
 [English](TRANSLATED_TEXTURES.md)
 
-2026-09-18 に `experimental/translated-textures` ブランチで作成。**そのブランチで実装済み（フレームワークは `experimental/language-textures` の Assets 1.2.0）。ゲームでの確認はまだです。** きっかけは [#4](https://github.com/TomXV/dragnwash-localization/issues/4) です。ゲームの文字の一部は絵になっています（メニューのボタン、ロード画面の扉の札、壁の看板）。
+2026-09-18 に `experimental/translated-textures` ブランチで作成。**そのブランチで実装済み（フレームワークは `experimental/language-textures` の Assets 1.2.0）。2026-09-19 にゲームで確認しました（Direct3D 12。メニューのボタンをテスト用の絵に差し替え、表示される、設定でオフにできる、ほかの言語ではゲームの絵に戻る、落ちない）。** きっかけは [#4](https://github.com/TomXV/dragnwash-localization/issues/4) です。ゲームの文字の一部は絵になっています（メニューのボタン、ロード画面の扉の札、壁の看板）。
 
 ## 変わったこと
 
