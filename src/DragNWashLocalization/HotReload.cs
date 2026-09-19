@@ -11,8 +11,9 @@ namespace DragNWashLocalization
     // needed - re-read the files, re-apply to every TMP_Text we have seen - so
     // this only has to notice a file changed and call it from the main thread.
     //
-    // Two files are watched: the published strings.csv and, if present, the
-    // plain _discovered/<locale>.working.csv that translators actually edit.
+    // The files watched: the published strings.csv, if present the plain
+    // _discovered/<locale>.working.csv that translators actually edit, and the
+    // packs of other mods read for the language (experimental).
     //
     // Polling rather than FileSystemWatcher: the watcher fires on a thread pool
     // thread, fires several times per save, and fires while the editor still
@@ -47,6 +48,11 @@ namespace DragNWashLocalization
             })
             {
                 Files.Add(new Watched { Path = path, LastSeen = SafeWriteTime(path) });
+            }
+            // Other mods' packs read for this language (experimental).
+            foreach (ModTranslations.Pack pack in ModTranslations.Packs)
+            {
+                Files.Add(new Watched { Path = pack.Path, LastSeen = SafeWriteTime(pack.Path) });
             }
         }
 

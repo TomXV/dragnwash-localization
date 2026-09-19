@@ -31,6 +31,9 @@ namespace DragNWashLocalization
         // Source text for keys that arrived as source_en rows. Only for
         // logging and exports; lookups never need it.
         private static readonly Dictionary<string, string> SourceByKey = new Dictionary<string, string>(StringComparer.Ordinal);
+        // Keys a pack of another mod added (experimental, ModTranslations), and
+        // which mod, to name both sides of a conflict.
+        private static readonly Dictionary<string, string> ModOwner = new Dictionary<string, string>(StringComparer.Ordinal);
         // TryGetTranslation runs on every text assignment, so hash once per
         // distinct string rather than once per call.
         private static readonly ConcurrentDictionary<string, string> HashCache = new ConcurrentDictionary<string, string>(StringComparer.Ordinal);
@@ -148,6 +151,28 @@ namespace DragNWashLocalization
                 }
                 result[name] = texts;
             }
+            // Other mods' packs (experimental), for the languages this mod has.
+            if (ModTranslations.Enabled)
+            {
+                foreach (KeyValuePair<string, string> pack in ModTranslations.AllLanguagePaths(pluginDirectory))
+                {
+                    if (!result.TryGetValue(pack.Key, out List<string> texts)) continue;
+                    try
+                    {
+                        foreach (var row in CsvReader.ReadRows(pack.Value))
+                        {
+                            if (row.TryGetValue("translation", out var translation) && !string.IsNullOrEmpty(translation))
+                            {
+                                texts.Add(translation);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Plugin.Log($"[font] Could not read {pack.Value} for font preparation: {ex.Message}");
+                    }
+                }
+            }
             return result;
         }
 
@@ -169,6 +194,8 @@ namespace DragNWashLocalization
             ByKey.Clear();
             ByLineId.Clear();
             SourceByKey.Clear();
+            ModOwner.Clear();
+            ModTranslations.Clear();
             DiscoveredText.Clear();
             AppliedOnce.Clear();
             lock (PendingDiscoveredLines)
@@ -191,6 +218,14 @@ namespace DragNWashLocalization
                 // copy on top if there is one, so edits made there win.
                 string localeDir = Path.Combine(pluginDirectory, "Translations", locale);
                 LoadFile(Path.Combine(localeDir, "strings.csv"), locale + "/strings.csv");
+                // Other mods' packs next: they add lines, never replace these.
+                if (ModTranslations.Enabled)
+                {
+                    foreach (ModTranslations.Pack pack in ModTranslations.Find(pluginDirectory, locale))
+                    {
+                        LoadModPack(pack);
+                    }
+                }
                 LoadFile(WorkingCopy.PathFor(pluginDirectory, locale), "_discovered/" + WorkingCopy.FileNameFor(locale));
             }
 
@@ -255,6 +290,85 @@ namespace DragNWashLocalization
         }
 
         private const int MaxMalformedExamples = 3;
+        private const int MaxConflictsLogged = 5;
+        private const string OwnName = "Drag'n Wash Localization";
+
+        // Another mod's pack (experimental). Its rows fill only lines nothing
+        // loaded before it translates; a row that disagrees with one already
+        // loaded (this mod's pack, or a mod earlier in GUID order) is left out
+        // and noted as a conflict. A file too large, or one that cannot be read,
+        // is skipped whole, and nothing else is affected.
+        private static void LoadModPack(ModTranslations.Pack pack)
+        {
+            string label = pack.Name + ": Translations/" + Path.GetFileName(Path.GetDirectoryName(pack.Path)) + "/strings.csv";
+            try
+            {
+                long size = new FileInfo(pack.Path).Length;
+                if (size > ModTranslations.MaxFileBytes)
+                {
+                    pack.Problem = $"larger than {ModTranslations.MaxFileBytes / (1024 * 1024)} MB, not read";
+                    Plugin.Log($"[mods] {label} is {size / 1024} KB, larger than {ModTranslations.MaxFileBytes / (1024 * 1024)} MB; not read.");
+                    ModTranslations.NoteLoaded(pack);
+                    return;
+                }
+                int badKeys = 0, logged = 0;
+                foreach (var row in CsvReader.ReadRows(pack.Path))
+                {
+                    if (!row.TryGetValue("translation", out var translation) || string.IsNullOrEmpty(translation))
+                    {
+                        continue;
+                    }
+                    string key = ResolveKey(row, out string source, out bool malformed);
+                    if (key == null)
+                    {
+                        if (malformed) badKeys++;
+                        continue;
+                    }
+                    if (pack.Rows >= ModTranslations.MaxRowsPerMod)
+                    {
+                        pack.Problem = $"only the first {ModTranslations.MaxRowsPerMod} rows read";
+                        Plugin.Log($"[mods] {label}: only the first {ModTranslations.MaxRowsPerMod} rows are read.");
+                        break;
+                    }
+                    Dictionary<string, string> table = TranslationKey.LooksLikeLineId(key) ? ByLineId : ByKey;
+                    if (table.TryGetValue(key, out string existing))
+                    {
+                        if (existing != translation)
+                        {
+                            string other = ModOwner.TryGetValue(key, out string owner) ? owner : OwnName;
+                            ModTranslations.NoteConflict(pack, key, other, existing, translation);
+                            if (logged++ < MaxConflictsLogged)
+                            {
+                                Plugin.Log($"[mods] Conflict: {pack.Name} translates \"{DescribeKey(key)}\" as \"{translation}\", {other} as \"{existing}\"; {other}'s is kept.");
+                            }
+                        }
+                        continue;
+                    }
+                    table[key] = translation;
+                    ModOwner[key] = pack.Name;
+                    if (source != null && table == ByKey)
+                    {
+                        SourceByKey[key] = source;
+                    }
+                    pack.Rows++;
+                }
+                if (badKeys > 0)
+                {
+                    Plugin.Log($"[mods] {badKeys} row(s) in {label} were skipped: not a key, a line ID or English.");
+                }
+                Plugin.Log($"[mods] {label}: {pack.Rows} line(s){(pack.Conflicts > 0 ? $", {pack.Conflicts} conflict(s) left out" : "")}.");
+            }
+            catch (Exception ex)
+            {
+                pack.Problem = "could not be read: " + ex.Message;
+                Plugin.Log($"[mods] Could not read {label}: {ex.Message}. That file is skipped; nothing else is affected.");
+            }
+            ModTranslations.NoteLoaded(pack);
+        }
+
+        // The mod whose pack supplied a key's translation, or null for this
+        // mod's own pack and the working copy.
+        public static string ModFor(string key) => key != null && ModOwner.TryGetValue(key, out string mod) ? mod : null;
 
         // Why a row was skipped, in terms a translator can act on.
         private static string DescribeMalformed(Dictionary<string, string> row)
@@ -608,12 +722,14 @@ namespace DragNWashLocalization
 
                     // Keep any draft the translator typed into this file directly.
                     row.TryGetValue("translation", out var draft);
-                    kept.Add(CsvReader.Escape(source) + "," + CsvReader.Escape(draft ?? string.Empty));
+                    row.TryGetValue("mod", out var mod);
+                    kept.Add(CsvReader.Escape(source) + "," + CsvReader.Escape(draft ?? string.Empty) + "," + CsvReader.Escape(mod ?? string.Empty));
                 }
 
                 using (var writer = new StreamWriter(filePath, append: false, new UTF8Encoding(false)))
                 {
-                    writer.WriteLine("source_en,translation");
+                    // mod: the mod that showed the text; empty for the game.
+                    writer.WriteLine("source_en,translation,mod");
                     foreach (string line in kept)
                     {
                         writer.WriteLine(line);
@@ -681,7 +797,7 @@ namespace DragNWashLocalization
 
             lock (PendingDiscoveredLines)
             {
-                PendingDiscoveredLines.Add(CsvReader.Escape(source) + ",");
+                PendingDiscoveredLines.Add(CsvReader.Escape(source) + ",," + CsvReader.Escape(ModTextOwners.For(source) ?? string.Empty));
             }
         }
 
@@ -801,7 +917,7 @@ namespace DragNWashLocalization
                 {
                     if (writeHeader)
                     {
-                        writer.WriteLine("source_en,translation");
+                        writer.WriteLine("source_en,translation,mod");
                     }
                     foreach (string line in lines)
                     {

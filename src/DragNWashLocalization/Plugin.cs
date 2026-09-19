@@ -47,6 +47,7 @@ namespace DragNWashLocalization
         internal static ConfigEntry<double> LayoutRiskThreshold;
         internal static ConfigEntry<bool> HotReloadTranslations;
         internal static ConfigEntry<bool> TranslatePictures;
+        internal static ConfigEntry<bool> TranslationsFromOtherMods;
         internal static string PluginDirectory;
 
         private static Plugin _instance;
@@ -193,6 +194,17 @@ namespace DragNWashLocalization
                 new ConfigDescription(
                     "Shows pictures with text (menu buttons, signs) in the chosen language, where the language has them. On Direct3D 12 the pictures change the next time the game starts after a language change.",
                     null, new SettingMeta { DisplayName = "Translate pictures" }));
+
+            TranslationsFromOtherMods = Config.Bind(
+                "Experimental",
+                "TranslationsFromOtherMods",
+                false,
+                new ConfigDescription(
+                    "Beta, experimental. Reads the translations other mods ship for their own text (<mod folder>/Translations/<language>/strings.csv). How this works with each mod is untested: text may look wrong or not match; turn it off if something is off. On Direct3D 12, characters only a mod's translation uses need a restart after turning it on.",
+                    null,
+                    new SettingMeta { DisplayName = "[Experimental] Translations from other mods" },
+                    new SectionMeta { DisplayName = "Experimental", Description = "Beta features, off by default." }));
+            TranslationsFromOtherMods.SettingChanged += (sender, args) => _pendingReload = true;
 
             _committedLocale = TargetLocale.Value;
             RightToLeft.SetLocale(TargetLocale.Value);
@@ -392,6 +404,7 @@ namespace DragNWashLocalization
         }
 
         private float _nextDiscoveredFlushTime;
+        private bool _pendingReload;
         private bool _pendingDump;
         private bool _pendingUiDump;
         private bool _pendingLayoutCheck;
@@ -411,12 +424,16 @@ namespace DragNWashLocalization
             // Locale switching is requested from OnGUI but performed here: it
             // reads files and rasterizes glyphs, neither of which belongs in a
             // render callback.
-            if (_pendingLocale != null)
+            // A language switch, or the same language read again (the setting
+            // for other mods' translations changed).
+            if (_pendingLocale != null || _pendingReload)
             {
-                string locale = _pendingLocale;
-                bool persist = _pendingLocalePersist;
+                bool reloadOnly = _pendingLocale == null;
+                string locale = _pendingLocale ?? TargetLocale.Value;
+                bool persist = !reloadOnly && _pendingLocalePersist;
                 _pendingLocale = null;
                 _pendingLocalePersist = true;
+                _pendingReload = false;
 
                 SetLocaleValue(locale, persist);
                 if (persist)
@@ -447,7 +464,9 @@ namespace DragNWashLocalization
                     int unprepared = GameFonts.CountUnprepared(TranslationStore.TranslatedTexts);
                     if (unprepared > 0)
                     {
-                        Log($"[font] {locale} was installed after startup and has {unprepared} character(s) no font was prepared for; restart the game to prepare them.");
+                        Log(reloadOnly
+                            ? $"[font] Other mods' translations use {unprepared} character(s) no font was prepared for at startup; restart the game to prepare them."
+                            : $"[font] {locale} was installed after startup and has {unprepared} character(s) no font was prepared for; restart the game to prepare them.");
                     }
                 }
                 TmpTextHook.RefreshAll();
@@ -457,7 +476,9 @@ namespace DragNWashLocalization
                     OptionsLanguage.Refresh();
                 }
                 HotReload.Track(PluginDirectory, locale);
-                Log($"Switched locale to {locale}. Loaded entries={TranslationStore.EntryCount}");
+                Log(reloadOnly
+                    ? $"Reloaded {locale} ({(ModTranslations.Enabled ? $"with {ModTranslations.Packs.Count} other mod(s)" : "other mods' translations off")}). Loaded entries={TranslationStore.EntryCount}"
+                    : $"Switched locale to {locale}. Loaded entries={TranslationStore.EntryCount}");
             }
 
             // Everything from here on is for translators and mod makers; a

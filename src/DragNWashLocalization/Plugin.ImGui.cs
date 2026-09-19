@@ -384,9 +384,10 @@ namespace DragNWashLocalization
             ToolWindow.Fill(area, ToolWindow.InsetColor);
             float innerWidth = Mathf.Max(100, area.width - 36);
             const float contentHeight = 394;
+            List<string> modLines = OtherModsLines();
             ToolWindow.ApplyScroll(area, ref _localeScroll);
             _localeScroll = GUI.BeginScrollView(area, _localeScroll,
-                new Rect(0, 0, innerWidth, contentHeight + Mathf.Ceil(_availableLocales.Length / 3f) * 38), false, false);
+                new Rect(0, 0, innerWidth, contentHeight + Mathf.Ceil(_availableLocales.Length / 3f) * 38 + (modLines.Count > 0 ? 46 + modLines.Count * 26 : 0)), false, false);
             GUI.Label(new Rect(12, 8, innerWidth - 12, 26), "LANGUAGE", S.Label);
             float buttonWidth = (innerWidth - 28) / 3;
             float y = 42;
@@ -447,7 +448,51 @@ namespace DragNWashLocalization
             y += 42;
             GUI.Label(new Rect(12, y, innerWidth - 12, 52),
                 "Exports are written to Translations/_discovered.\nLanguage changes apply to text already on screen.", S.WrappedLabel);
+            if (modLines.Count > 0)
+            {
+                y += 64;
+                GUI.Label(new Rect(12, y, innerWidth - 12, 26), "OTHER MODS (EXPERIMENTAL)", S.Label);
+                y += 34;
+                foreach (string line in modLines)
+                {
+                    GUI.Label(new Rect(12, y, innerWidth - 12, 26), ToolWindow.Drawable(line), S.MutedLabel);
+                    y += 26;
+                }
+            }
             GUI.EndScrollView();
+        }
+
+        private const int MaxConflictsShown = 10;
+
+        // The packs of other mods read for this language and the lines they
+        // disagree on (experimental, off by default: nothing to show then).
+        private static List<string> OtherModsLines()
+        {
+            var lines = new List<string>();
+            if (!ModTranslations.Enabled)
+            {
+                return lines;
+            }
+            if (ModTranslations.Packs.Count == 0)
+            {
+                lines.Add("No other mod ships a translation for this language.");
+                return lines;
+            }
+            foreach (ModTranslations.Pack pack in ModTranslations.Packs)
+            {
+                lines.Add($"{pack.Name}: {pack.Rows} line(s)" + (pack.Conflicts > 0 ? $", {pack.Conflicts} conflict(s)" : "") + (pack.Problem != null ? $" ({pack.Problem})" : ""));
+            }
+            int shown = 0;
+            foreach (ModTranslations.Conflict c in ModTranslations.Conflicts)
+            {
+                if (shown++ >= MaxConflictsShown) break;
+                lines.Add($"Conflict: \"{TranslationStore.DescribeKey(c.Key)}\": {c.Other} \"{c.Kept}\" kept, {c.Mod} \"{c.Dropped}\" left out");
+            }
+            if (ModTranslations.ConflictCount > MaxConflictsShown)
+            {
+                lines.Add($"... and {ModTranslations.ConflictCount - MaxConflictsShown} more conflict(s) in the Activity log and BepInEx/LogOutput.log.");
+            }
+            return lines;
         }
 
         private Vector2 _savesScroll;

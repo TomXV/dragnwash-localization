@@ -2,7 +2,7 @@
 
 [English](MOD_TRANSLATIONS.md)
 
-作成日: 2026-09-17。**設計のみで、まだ実装していません。** きっかけは [Issue #28](https://github.com/TomXV/dragnwash-localization/issues/28)（新しい仕組み・UI・会話を足す Mod のテキストは翻訳できるか）。
+作成日: 2026-09-17。**2026-09-19 に `experimental/mod-translations` ブランチで実装（β版・実験的、既定はオフ）。ゲームでの確認はまだです。Mods 画面へのお知らせは、フレームワークのお知らせ欄ができてから。** きっかけは [Issue #28](https://github.com/TomXV/dragnwash-localization/issues/28)（新しい仕組み・UI・会話を足す Mod のテキストは翻訳できるか）。
 
 ## 結論
 
@@ -82,14 +82,14 @@ BepInEx/plugins/
 - **F1 → Translation**：読み込んだ Mod のパックを、Mod 名・行数・競合の数で一覧にする。
 - **ホットリロード**：Mod のパックも監視し、保存すると反映する。
 - **書き出し**：
-  - 会話（F6）は YarnProject ごとに分かれているので、ゲーム本体以外の YarnProject は `# ===== Mod: <プロジェクト名> =====` の見出しで分ける。
-  - UI テキストは、`_discovered/strings.csv` と F7 の書き出しに `mod` 列を足し、その文字を出したプラグインを入れる。未翻訳の文字を初めて記録するときに調べる（[決めたこと](#決めたこと)）。空欄は、ゲーム本体か、判別できなかったもの。
+  - 会話（F6）の `dialogue_lines.csv` には、もとから `yarn_project` 列があり、Mod の YarnProject の行はその名前で分かる。見出しは足さない。
+  - UI テキストは、`_discovered/strings.csv` と F7 の書き出し（`ui_texts.csv`）に `mod` 列を足し、その文字を出したプラグインの名前を入れる。開発者ツールがオンのとき、それぞれの文字に初めて出会ったときに調べる（[決めたこと](#決めたこと)）。F7 では、それで分からなければ、ラベルとその親のコンポーネントがどの Mod のものかも見る。空欄は、ゲーム本体か、判別できなかったもの。
 - **Hash for commit** は、この Mod のパック用のまま。Mod のパックは `tools/hash-strings.ps1 -Path` で作る。台本の順に並べる機能はゲーム本体の台本しか知らないので、Mod の行は末尾にまとまる。
 
 ## Mod の作者向けの手順（案）
 
 1. 自分の Mod のテキストを英語で、TextMeshPro の `text` か `SetText(string)` で出す。それだけで翻訳の対象になる（IMGUI や古い uGUI の `Text` は対象外）。
-2. 翻訳者に、開発者ツールをオンにして F7（UI）・F6（会話）で書き出してもらい、自分の Mod の行（UI は `mod` 列、会話は `Mod:` の見出し）を選んで `translation` を埋めてもらう。
+2. 翻訳者に、開発者ツールをオンにして F7（UI）・F6（会話）で書き出してもらい、自分の Mod の行（UI は `mod` 列、会話は `yarn_project` 列）を選んで `translation` を埋めてもらう。
    会話は台詞 ID（`line:<id>` の行）で書くのがおすすめ。英文を直しても訳が残る。英文で引く行は、英文を直すと英語に戻る。
 3. `tools/hash-strings.ps1 -Path` でハッシュ化し、`Translations/<locale>/strings.csv` として Mod と一緒に配る。
 4. 機械翻訳などで作った訳は、ファイルの先頭のコメントに `Provisional` と書く（この Mod の仮翻訳パックと同じ）。

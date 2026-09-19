@@ -84,7 +84,8 @@ namespace DragNWashLocalization
                         TranslationStore.KeyFor(source), ",",
                         CsvReader.Escape(source), ",",
                         CsvReader.Escape(existing ?? string.Empty), ",",
-                        CsvReader.Escape(DescribePath(component))));
+                        CsvReader.Escape(DescribePath(component)), ",",
+                        CsvReader.Escape(ModTextOwners.For(source, component) ?? string.Empty)));
                 }
 
                 if (rows.Count == 0)
@@ -101,7 +102,8 @@ namespace DragNWashLocalization
 
                 using (var writer = new StreamWriter(path, append: false, new UTF8Encoding(false)))
                 {
-                    writer.WriteLine("key,source_en,translation,object_path");
+                    // mod: the mod that showed the text, when known; empty for the game.
+                    writer.WriteLine("key,source_en,translation,object_path,mod");
                     foreach (string row in rows)
                     {
                         writer.WriteLine(row);

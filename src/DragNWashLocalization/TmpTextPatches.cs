@@ -32,6 +32,10 @@ namespace DragNWashLocalization
 
             try
             {
+                if (!context.IsRefresh)
+                {
+                    ModTextOwners.Note(source);
+                }
                 // A row for this exact line of dialogue wins over the hash row
                 // shared by every line with the same English.
                 if (instance != null && LineIdContext.TryGetTranslation(instance, source, out string perLine, out string lineId))

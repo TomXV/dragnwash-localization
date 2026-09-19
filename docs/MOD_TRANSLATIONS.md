@@ -2,7 +2,7 @@
 
 [日本語](MOD_TRANSLATIONS.ja.md)
 
-Written 2026-09-17. **A design only; nothing here is implemented yet.** It started from [issue #28](https://github.com/TomXV/dragnwash-localization/issues/28): can the text of a mod that adds mechanics, UI and dialogue be translated?
+Written 2026-09-17. **Built on the `experimental/mod-translations` branch on 2026-09-19 (beta, experimental, off by default); not tested in the game yet. The notice on the Mods screen waits for the framework's notice area.** It started from [issue #28](https://github.com/TomXV/dragnwash-localization/issues/28): can the text of a mod that adds mechanics, UI and dialogue be translated?
 
 ## In short
 
@@ -82,14 +82,14 @@ Only with developer tools on, as today.
 - **F1 → Translation** lists the loaded mod packs with the mod's name, row count and conflicts.
 - **Hot reload** watches mod packs too.
 - **Exports**:
-  - F6 already works per YarnProject; a project that is not the game's gets a `# ===== Mod: <project> =====` header.
-  - UI strings get a `mod` column in `_discovered/strings.csv` and the F7 export: the plugin that showed the string, found when an untranslated string is first recorded (see [decisions](#decisions)). Empty means the game, or that it could not be told.
+  - F6's `dialogue_lines.csv` already has a `yarn_project` column, which names a mod's YarnProject; no header is added.
+  - UI strings get a `mod` column in `_discovered/strings.csv` and the F7 export (`ui_texts.csv`): the name of the plugin that showed the string, found the first time each string is met while developer tools are on (see [decisions](#decisions)). When that does not tell, F7 also asks which mod the components on the label and its parents belong to. Empty means the game, or that it could not be told.
 - **Hash for commit** stays for this mod's packs. A mod's pack is made with `tools/hash-strings.ps1 -Path`. Ordering by the script only knows the game's script, so a mod's rows end up together at the end.
 
 ## Steps for mod authors (draft)
 
 1. Show your mod's text in English through TextMeshPro's `text` or `SetText(string)`. That alone makes it translatable (IMGUI and legacy uGUI `Text` are not covered).
-2. Translators turn developer tools on, export with F7 (UI) and F6 (dialogue), pick your mod's rows (the `mod` column for UI text, the `Mod:` header for dialogue) and fill in `translation`.
+2. Translators turn developer tools on, export with F7 (UI) and F6 (dialogue), pick your mod's rows (the `mod` column for UI text, the `yarn_project` column for dialogue) and fill in `translation`.
    Dialogue is best keyed by line ID (`line:<id>` rows): those survive when you reword the English, rows keyed by the English text do not.
 3. Hash with `tools/hash-strings.ps1 -Path` and ship the result as `Translations/<locale>/strings.csv` with your mod.
 4. A translation made by machine or otherwise unreviewed says `Provisional` in its header comment, like this mod's provisional packs.
