@@ -28,6 +28,9 @@ Thumbs.db
 .~lock.*#
 ~$*
 
-
 # Python bytecode from tools/
 __pycache__/
+
+# Dragn Wash Localization Editor
+dwloc.exe
+*.log
