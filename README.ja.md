@@ -39,6 +39,7 @@
 > [!NOTE]
 > **`Install.exe` を押しても何も起きない、または「Windows によって PC が保護されました」と出る場合**
 > `Install.exe` は署名のない小さなプログラムなので、初回だけ Windows SmartScreen が止めることがあります。
+>
 > - 警告画面が出たら **「詳細情報」→「実行」** を押してください
 > - 何も出ないときは、`Install.exe` を右クリック → プロパティ → 一番下の **「許可する」** にチェック → OK のあと、もう一度ダブルクリック
 
@@ -47,6 +48,7 @@
 > 誤検知です。末尾の `!ml` は、既知のウイルスと一致したのではなく、機械学習で「怪しいパターンに似ている」と推定されたことを表します。v1.0.0 までのインストーラーは PowerShell のスクリプトを黒い窓を出さずに起動しており、その起動のしかたがマルウェアの手口に似ていました。v1.1.0 からの `Install.exe` は Drag'n Wash ModFramework の共通インストーラーで、スクリプトを実行しない普通の署名なしプログラムですが、新しい署名なしのファイルは検出されることがあります。中身はフレームワークのリポジトリの [`installer/`](https://github.com/TomXV/dragnwash-modframework/tree/main/installer) で公開しています。
 >
 > 自動で隔離されたときは検出名が表示されず、展開したフォルダから `Install.exe` が消えているように見えるだけです。何が消されたかは、Windows セキュリティの「保護の履歴」で確認できます。
+>
 > - まず、ダウンロードした zip が本物か確かめてください。PowerShell で `(Get-FileHash "<zip のパス>").Hash -eq ("<Releases の sha256>" -replace '^sha256:')` を実行し、`True` と出れば、このリポジトリで配布しているファイルです。`False` なら使わずに削除してください
 > - `sha256` は [Releases](https://github.com/TomXV/dragnwash-localization/releases) のページで `DragNWashLocalization-<version>.zip` の下に表示されます。自動で付く「Source code」の2行にはハッシュがないので、そちらは使わないでください
 > - 一致は「配布しているファイルと同じもの」の確認であって、安全性そのものの証明ではありません。中身は上記のソースで確認できます
@@ -60,6 +62,7 @@ Snapdragon X などの ARM 版 Windows でも、上と同じ `Install.exe` の�
 
 > [!IMPORTANT]
 > **ゲーム本体が DirectX 12 では正しく動かないため、Steam の起動オプションに `-force-d3d11` を入れてください。** Mod を入れていなくても起きる、ゲーム側の問題です。
+>
 > - GPU ドライバが古いと、スプラッシュ画面のあとにゲームが落ちます
 > - 最新のドライバでは落ちなくなりますが、3D が描画されません
 >
