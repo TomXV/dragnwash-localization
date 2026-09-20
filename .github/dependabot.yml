@@ -1,0 +1,35 @@
+# Dependabot keeps the few things this repository does depend on up to date.
+#
+# The game's own assemblies are not here and never will be: they are copied
+# from a local install into the ignored libs/ folder, and the build fetches
+# them from a private repository, so Dependabot neither sees nor touches them.
+# The translations are data, not dependencies. What is left is the plugin's
+# one NuGet package and the actions the workflows run.
+#
+# Each ecosystem is grouped into one pull request a week instead of one per
+# package. A pull request still has to pass the translation checks like any
+# other, and merging it stays a person's decision.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "Actions"
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: "nuget"
+    directory: "/src/DragNWashLocalization"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "NuGet"
+    open-pull-requests-limit: 5
+    groups:
+      nuget:
+        patterns: ["*"]

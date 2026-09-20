@@ -3,3 +3,9 @@ contact_links:
   - name: 翻訳の始め方 / How to contribute
     url: https://github.com/TomXV/dragnwash-localization/blob/main/CONTRIBUTING.md
     about: 手順・ファイル形式・ハッシュ化の方法はこちら
+  - name: セキュリティの問題 / Security problem
+    url: https://github.com/TomXV/dragnwash-localization/security/advisories/new
+    about: 脆弱性は公開の Issue ではなく、こちらの非公開のフォームへ。Please report vulnerabilities privately here, not in a public issue. See SECURITY.md.
+  - name: フレームワーク側のこと / About the framework
+    url: https://github.com/TomXV/dragnwash-modframework/issues
+    about: Mods 画面、インストーラー、フォントの読み込みなど土台側の問題は Drag'n Wash ModFramework のリポジトリへ。The Mods screen, the installer and font loading belong in the framework's repository.

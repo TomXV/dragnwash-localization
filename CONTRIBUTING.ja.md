@@ -6,6 +6,10 @@ Drag'n Wash Localization は、コードを書かずに **CSV を編集するだ
 Mod です。この文書は翻訳に参加したい方向けのガイドです。プラグイン本体の開発者向けの
 ビルド・配布手順は [docs/RELEASING.ja.md](docs/RELEASING.ja.md) を参照してください。
 
+参加するみなさんには[行動規範](CODE_OF_CONDUCT.ja.md)に沿ってもらいます。
+セキュリティの問題は、プルリクエストや公開の Issue ではなく
+[SECURITY.ja.md](SECURITY.ja.md) の非公開のフォームへお願いします。
+
 ## 必要なもの
 
 - Drag'n Wash（Steam版）と本 Mod の導入（BepInEx）

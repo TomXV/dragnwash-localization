@@ -333,6 +333,8 @@ No code is required. Edit `Translations/<locale>/strings.csv` to contribute a tr
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow, file format, and instructions for finding untranslated strings.
 
+Everyone taking part follows the [code of conduct](CODE_OF_CONDUCT.md). Found a security problem? Please report it privately rather than in an issue: [SECURITY.md](SECURITY.md). And if you want to and can, there is [GitHub Sponsors](https://github.com/sponsors/TomXV) — the mod is free and stays free either way, and a translation is worth more.
+
 ## Distribution and releases
 
 See [docs/RELEASING.md](docs/RELEASING.md) for instructions on building and distributing the release ZIP.

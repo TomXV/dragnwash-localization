@@ -384,6 +384,8 @@ Drag'n Wash の Mod を作っていて、フレームワークに欲しい機能
 コード不要で `Translations/<locale>/strings.csv` を編集するだけで参加できます。
 手順・書式・未翻訳の見つけ方は [CONTRIBUTING.ja.md](CONTRIBUTING.ja.md) を参照してください。
 
+参加するみなさんには[行動規範](CODE_OF_CONDUCT.ja.md)に沿ってもらいます。セキュリティの問題を見つけたときは、Issue ではなく非公開で報告してください（[SECURITY.ja.md](SECURITY.ja.md)）。そうしたくて、できるならば [GitHub Sponsors](https://github.com/sponsors/TomXV) もあります。いずれにせよ Mod は無料のままですし、翻訳のほうがずっと価値があります。
+
 ## 配布・リリース
 
 リリース zip のビルドと配布手順は [docs/RELEASING.ja.md](docs/RELEASING.ja.md) を

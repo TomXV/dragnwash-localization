@@ -337,6 +337,8 @@ Drag'n Wash 모드를 개발 중이고 프레임워크에 있었으면 하는 �
 
 워크플로, 파일 형식, 미번역 문자열 찾는 방법은 [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.
 
+참여하는 모든 분은 [행동 강령](CODE_OF_CONDUCT.md)을 따릅니다. 보안 문제를 발견하면 이슈가 아니라 비공개로 알려 주세요([SECURITY.md](SECURITY.md)). 원하시고 여유가 있다면 [GitHub Sponsors](https://github.com/sponsors/TomXV)도 있습니다. 어느 쪽이든 모드는 계속 무료이며, 번역이 훨씬 더 큰 도움이 됩니다.
+
 ## 배포와 릴리스
 
 릴리스 ZIP 빌드/배포 절차는 [docs/RELEASING.md](docs/RELEASING.md)를 참고하세요.

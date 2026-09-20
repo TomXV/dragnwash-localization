@@ -4,6 +4,8 @@
 
 Drag'n Wash Localization lets you contribute a translation by **editing CSV files only**, with no code. This guide is for translators. Build and release steps for the plugin itself are in [docs/RELEASING.md](docs/RELEASING.md).
 
+Everyone taking part follows the [code of conduct](CODE_OF_CONDUCT.md). A security problem goes to the private form in [SECURITY.md](SECURITY.md), not into a pull request or a public issue.
+
 ## What you need
 
 - Drag'n Wash (Steam) with this mod installed (BepInEx)
