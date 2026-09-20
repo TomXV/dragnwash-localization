@@ -42,10 +42,10 @@ would rather not make it public, both reach the same person.
 The latest release is the one that gets fixes. Older versions do not get
 back-ported patches; the answer to "is it fixed in 1.0.x?" is "update".
 
-| Version | Supported |
-|---|---|
-| The latest release ([Releases](https://github.com/TomXV/dragnwash-localization/releases)) | Yes |
-| Anything older | No — please update first |
+| Version                                                                                   | Supported                |
+|-------------------------------------------------------------------------------------------|--------------------------|
+| The latest release ([Releases](https://github.com/TomXV/dragnwash-localization/releases)) | Yes                      |
+| Anything older                                                                            | No — please update first |
 
 In scope, everything this repository ships:
 
