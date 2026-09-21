@@ -37,7 +37,7 @@ jobs:
     if: github.repository == 'TomXV/dragnwash-localization'
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check that the LIBS_TOKEN secret exists
         shell: pwsh
@@ -52,14 +52,14 @@ jobs:
           Write-Host "LIBS_TOKEN is set."
 
       - name: Get Drag'n Wash ModFramework
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: TomXV/dragnwash-modframework
           ref: ${{ github.event.inputs.framework_ref || 'main' }}
           path: framework
 
       - name: Get the reference assemblies (private, never committed here)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: TomXV/dragnwash-libs
           token: ${{ secrets.LIBS_TOKEN }}
@@ -102,7 +102,7 @@ jobs:
           }
           Write-Host "All referenced assemblies are present."
 
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: "8.0.x"
 
@@ -124,7 +124,7 @@ jobs:
           "### Built ``$($zip.Name)`` ($([math]::Round($zip.Length / 1KB)) KB) from ``$env:GITHUB_REF_NAME`` at ``$($env:GITHUB_SHA.Substring(0, 7))``, with Drag'n Wash ModFramework ``${{ github.event.inputs.framework_ref || 'main' }}`` at ``$fw``" | Out-File -Append $env:GITHUB_STEP_SUMMARY
 
       - name: Keep the zip as a workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: DragNWashLocalization
           path: release/*.zip

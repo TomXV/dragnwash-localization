@@ -27,14 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # The whole history: the check walks from the base to the head.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # The same image the other checks run in (docs/DOCKER.md). The sign-in is
       # allowed to fail: a pull request from a fork has no reach into the
       # package, and docker/ci-image.sh then builds the image itself.
       - name: Sign in to the container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         continue-on-error: true
         with:
           registry: ghcr.io
