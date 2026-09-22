@@ -15,7 +15,13 @@ You do not need to know Unity's internal keys or how to program. While working y
 
 ### Language display name (`name.txt`)
 
-Whatever you put in `Translations/<locale>/name.txt` is shown as the language's name in the game's **Options → Language (Mod)** list, on the language buttons in the F1 menu, and in the installers (Windows and Steam Deck) (for example `ja/name.txt` → `日本語`, `zh-Hans/name.txt` → `简体中文`). One line, UTF-8. Without the file the folder name is shown. Adding a language is just a folder, a `strings.csv` and a `name.txt`.
+Whatever you put in `Translations/<locale>/name.txt` is shown as the language's name:
+
+- in the game's **Options → Language (Mod)** list
+- on the language buttons in the F1 menu
+- in the installers (Windows and Steam Deck)
+
+For example `ja/name.txt` → `日本語`, `zh-Hans/name.txt` → `简体中文`. One line, UTF-8. Without the file the folder name is shown. Adding a language is just a folder, a `strings.csv` and a `name.txt`.
 
 ## Basic flow
 
@@ -83,7 +89,10 @@ key,section,node,order,speaker,source_en,translation
 5d0a…,L01 Ryan,Ryan_1_intro,1,Ryan,Hey. This the cleaning place?,…
 ```
 
-Conversations are in **play order** and the `speaker` column says **who is talking** (Conrad / Ryan / Alexander, Kobold for the player's choices, Phone for calls from head office, UI for interface text), which helps keep each character's voice consistent. `source_en` is filled from the script and UI the game currently has loaded (load a save first so all dialogue is present). Edit and save this file and hot reload shows the result immediately. It lives under `_discovered/`, so it never goes into the repository.
+- **Order and speaker:** conversations are in **play order** and the `speaker` column says **who is talking** (Conrad / Ryan / Alexander, Kobold for the player's choices, Phone for calls from head office, UI for interface text), which helps keep each character's voice consistent.
+- **`source_en`:** filled from the script and UI the game currently has loaded (load a save first so all dialogue is present).
+- **Hot reload:** edit and save this file and hot reload shows the result immediately.
+- **Not committed:** it lives under `_discovered/`, so it never goes into the repository.
 
 Running inside the game is the ownership check; there is no separate login.
 
@@ -154,13 +163,20 @@ Exclusions only affect discovery. Lookup happens first, so a row in `strings.csv
 
 Add a folder under `Translations/<locale>/` with a `strings.csv` (and a `name.txt`). Use a BCP 47 style name like the existing ones (`ja`, `zh-Hans`, `zh-Hant`, `pt-BR`, `ko`). The plugin detects folders automatically.
 
-Fonts are chosen from the characters in your file, so most scripts need nothing extra: Japanese, Chinese (Simplified and Traditional), Korean, Cyrillic, accented Latin and Hebrew all have a font on Windows and the Steam Deck. Right-to-left languages (`he`, `ar`, `fa`, `ur`, `yi`) are drawn right to left automatically; keep the file in normal typing order and avoid Latin words or digits inside a line, because those come out reversed. For a script the plugin has no font for, put a `.ttf`/`.otf` in a `fonts/` folder next to the plugin DLL.
+Fonts are chosen from the characters in your file, so most scripts need nothing extra.
+
+- **Fonts already there:** Japanese, Chinese (Simplified and Traditional), Korean, Cyrillic, accented Latin and Hebrew all have a font on Windows and the Steam Deck.
+- **Right to left:** right-to-left languages (`he`, `ar`, `fa`, `ur`, `yi`) are drawn right to left automatically; keep the file in normal typing order and avoid Latin words or digits inside a line, because those come out reversed.
+- **Other scripts:** for a script the plugin has no font for, put a `.ttf`/`.otf` in a `fonts/` folder next to the plugin DLL.
 
 ## Improving a provisional language
 
-Every pack except Japanese and Simplified Chinese is provisional: complete, but not reviewed by a native speaker. If you speak one of them, a review is the most valuable contribution there is. Fix lines in a pull request; once a whole pack has been read through by a native speaker, update the comment at the top of its `strings.csv` and its row in the README's language table in the same pull request. If that feels like too much, just say in the pull request that the whole pack was reviewed, and the maintainer will update both.
+Every pack except Japanese and Simplified Chinese is provisional: complete, but not reviewed by a native speaker. If you speak one of them, a review is the most valuable contribution there is.
 
-If you only change the `translation` column of the published `strings.csv` and leave the other columns as they are, the file stays hashed and needs no *Hash for commit*. To see the English next to each line while you review, use the working copy described in [Working with the English beside each line](#working-with-the-english-beside-each-line-recommended).
+- **Fixes:** fix lines in a pull request.
+- **A whole pack reviewed:** once a whole pack has been read through by a native speaker, update the comment at the top of its `strings.csv` and its row in the README's language table in the same pull request. If that feels like too much, just say in the pull request that the whole pack was reviewed, and the maintainer will update both.
+- **No hashing needed:** if you only change the `translation` column of the published `strings.csv` and leave the other columns as they are, the file stays hashed and needs no *Hash for commit*.
+- **The English beside each line:** to see the English next to each line while you review, use the working copy described in [Working with the English beside each line](#working-with-the-english-beside-each-line-recommended).
 
 ## Checking your work
 
@@ -232,4 +248,6 @@ How the pack's status is written (for example whether a partial review changes "
 
 ## Issues
 
-A new issue is labelled automatically (kind, area, severity), and a bug report missing a version, steps or a log gets one comment asking for them. For that, the title and the body's own words, without code blocks, tables, translation rows or images, and the error lines of a pasted log with user names taken out of paths, are sent to TypeSafe AI's classification model ([`tools/issue-triage.py`](https://github.com/TomXV/dragnwash-modframework/blob/main/tools/issue-triage.py) in the framework's repository). No game text or translation file is sent. A person reads every issue.
+- **Labels:** a new issue is labelled automatically (kind, area, severity), and a bug report missing a version, steps or a log gets one comment asking for them.
+- **What is sent:** for that, the title and the body's own words, without code blocks, tables, translation rows or images, and the error lines of a pasted log with user names taken out of paths, are sent to TypeSafe AI's classification model ([`tools/issue-triage.py`](https://github.com/TomXV/dragnwash-modframework/blob/main/tools/issue-triage.py) in the framework's repository). No game text or translation file is sent.
+- **A person reads every issue.**
