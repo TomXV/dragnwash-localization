@@ -19,13 +19,24 @@ namespace DragNWashLocalization
     // libraries hook text and dialogue, draw the F1 tool window, prepare fonts
     // and keep save history. What is left here is translation itself.
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-    // 1.1.0 for ModInfo.UpdateRepository.
+    // Core 1.1.0 for ModInfo.UpdateRepository, 1.2.0 for ModInfo.Reloadable and
+    // DeveloperTools.Enabled - the higher of the two.
     [BepInDependency(ModFramework.Guid, "1.2.0")]
-    [BepInDependency(DragNWash.ModFramework.Text.GameText.Guid, BepInDependency.DependencyFlags.HardDependency)]
+    // Text 1.0.0: every GameText member this mod calls (AddRewriter, IsAvailable,
+    // TryGetSource, RefreshAll, TextContext.IsRefresh) was already there.
+    [BepInDependency(DragNWash.ModFramework.Text.GameText.Guid, "1.0.0")]
+    // Dialogue 1.1.0 for LineKey and LineResolver (ScriptOrder, LineResolution).
     [BepInDependency(DragNWash.ModFramework.Dialogue.GameDialogue.Guid, "1.1.0")]
-    [BepInDependency(ToolWindow.Guid, BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency(GameFonts.Guid, BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency(GameSaves.Guid, BepInDependency.DependencyFlags.HardDependency)]
+    // ToolWindow 1.1.0 for the Console tab's "tl" command: AddCommand's
+    // completion overload and Drawable (Plugin.ImGui.cs).
+    [BepInDependency(ToolWindow.Guid, "1.1.0")]
+    // Assets 1.0.0: GameFonts is used unconditionally and every member this mod
+    // calls was already there. Translated pictures need Assets 1.2.0
+    // (AssetReplacements), but that is caught and skipped below, not required.
+    [BepInDependency(GameFonts.Guid, "1.0.0")]
+    // Saves 1.0.0: every GameSaves and GameFlags member this mod calls was
+    // already there.
+    [BepInDependency(GameSaves.Guid, "1.0.0")]
     public partial class Plugin : BaseUnityPlugin
     {
         public const string PluginGuid = "com.tomxv.dragnwash.localization";
