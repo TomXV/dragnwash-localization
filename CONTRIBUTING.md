@@ -229,3 +229,7 @@ Say in the pull request's *Credit* section whether you want to be credited, and 
 - the About screens of the in-game F1 menu and the installer (from the next release on)
 
 How the pack's status is written (for example whether a partial review changes "provisional") is decided per pull request. If you would rather not be credited, nothing is added; your commits still show in the repository history.
+
+## Issues
+
+A new issue is labelled automatically (kind, area, severity), and a bug report missing a version, steps or a log gets one comment asking for them. For that, the title and the body's own words, without code blocks, tables, translation rows or images, and the error lines of a pasted log with user names taken out of paths, are sent to TypeSafe AI's classification model ([`tools/issue-triage.py`](https://github.com/TomXV/dragnwash-modframework/blob/main/tools/issue-triage.py) in the framework's repository). No game text or translation file is sent. A person reads every issue.
