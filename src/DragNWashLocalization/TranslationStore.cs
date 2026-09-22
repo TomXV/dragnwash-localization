@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using DragNWash.ModFramework.Dialogue;
 
 namespace DragNWashLocalization
 {
@@ -11,8 +12,8 @@ namespace DragNWashLocalization
     // on-screen English string and its translation.
     //
     // The published file does not contain that English, though. Rows are keyed
-    // by TranslationKey.Hash of the source, so the repository redistributes
-    // none of the script. Both layouts are accepted in the same file:
+    // by LineKey.Hash of the source, so the repository redistributes none of
+    // the script. Both layouts are accepted in the same file:
     //
     //   key,translation           what the repository ships
     //   source_en,translation     what a translator writes locally, against
@@ -77,7 +78,7 @@ namespace DragNWashLocalization
 
         public static string KeyFor(string source)
         {
-            return HashCache.GetOrAdd(source, TranslationKey.Hash);
+            return HashCache.GetOrAdd(source, LineKey.Hash);
         }
 
         // Every translation in every installed locale. FontFallback rasterizes

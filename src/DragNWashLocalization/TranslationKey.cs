@@ -1,6 +1,4 @@
 using System;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace DragNWashLocalization
 {
@@ -10,35 +8,13 @@ namespace DragNWashLocalization
     // screen - which is to say, someone who owns the game - can translate it.
     //
     // The key is the first 16 hex digits of SHA-256 over the UTF-8 bytes of the
-    // string, exactly as TMP received it (no trimming, tags included). Sixteen
-    // digits is 64 bits: no risk of collision across a few thousand lines, and
-    // short enough to read in a diff. tools/hash-strings.ps1 computes the same.
+    // string, exactly as TMP received it (no trimming, tags included). That is
+    // exactly DragNWash.ModFramework.Dialogue.LineKey.Hash, which this mod calls
+    // rather than keeping a second copy; tools/hash-strings.ps1 computes the
+    // same on the offline side.
     internal static class TranslationKey
     {
         public const int Length = 16;
-
-        [ThreadStatic] private static SHA256 _sha;
-
-        public static string Hash(string source)
-        {
-            if (source == null)
-            {
-                return string.Empty;
-            }
-
-            if (_sha == null)
-            {
-                _sha = SHA256.Create();
-            }
-
-            byte[] digest = _sha.ComputeHash(Encoding.UTF8.GetBytes(source));
-            var sb = new StringBuilder(Length);
-            for (int i = 0; i < Length / 2; i++)
-            {
-                sb.Append(digest[i].ToString("x2"));
-            }
-            return sb.ToString();
-        }
 
         public const string LinePrefix = "line:";
 
