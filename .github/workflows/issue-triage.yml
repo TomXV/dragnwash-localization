@@ -1,0 +1,33 @@
+name: Issue triage
+
+# The framework's issue triage, run for this repository: labels a new issue by
+# kind, area and severity, and asks a bug report for a missing version, steps
+# or log with one fixed comment. The workflow and the script live in
+# TomXV/dragnwash-modframework, so both repositories are triaged the same way.
+# Needs the TYPESAFE_API_KEY secret here too; without it nothing happens.
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Issue number to triage
+        required: true
+      dry_run:
+        description: Judge and show the result only, change nothing
+        type: boolean
+        default: true
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    uses: TomXV/dragnwash-modframework/.github/workflows/issue-triage.yml@main
+    with:
+      issue: ${{ inputs.issue || '' }}
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets:
+      TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
