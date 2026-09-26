@@ -10,6 +10,7 @@ and commit the result. Each run adds to the file:
 
     python tools/game-fingerprints.py --game-dir "C:/Program Files (x86)/Steam/steamapps/common/Drag'n Wash" --label "Windows 9/12/2026_a93aa21a"
     python3 tools/game-fingerprints.py --game-dir ~/.local/share/Steam/steamapps/common/"Drag'n Wash" --label "Linux 9/13/2026_2a0da92f"
+    python3 tools/game-fingerprints.py --game-dir ~/"Library/Application Support/Steam/steamapps/common/Drag'n Wash" --label "macOS 9/12/2026_a93aa21a"
 
 With --stdout the result for that one install is printed instead (to merge a
 scan made on another machine with --merge FILE).
@@ -23,13 +24,15 @@ import sys
 
 OUT = pathlib.Path(__file__).resolve().parent.parent / "ci" / "game-fingerprints.json"
 
-# Mod loader files and files made by Steam or crashes, not the game's.
+# Mod loader files and files made by Steam, Finder or crashes, not the game's.
 SKIP_DIRS = {"BepInEx"}
 SKIP_FILES = {
     ".doorstop_version", "doorstop_config.ini", "winhttp.dll", "libdoorstop.so",
-    "run_bepinex.sh", "changelog.txt", "steam_appid.txt",
+    "libdoorstop.dylib", "run_bepinex.sh", "changelog.txt", "steam_appid.txt",
+    ".DS_Store",
 }
-SKIP_PREFIXES = ("mono_crash.",)
+# preloader_*.log: what Doorstop writes into DragNWash.app/Contents/MacOS when BepInEx fails to start.
+SKIP_PREFIXES = ("mono_crash.", "preloader_")
 # Tiny files (an empty file, a one-line config) would match unrelated files.
 MIN_SIZE = 256
 
