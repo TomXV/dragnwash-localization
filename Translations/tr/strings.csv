@@ -20,7 +20,7 @@ line:6046bedf,L01 Ryan,Ryan_1_intro,9,Ryan,Harika!
 0f3f0b7e817061e6,L01 Ryan,Ryan_1_intro,12,Kobold,"Bekle bir saniye, bariyeri açmam lazım."
 b8a4a2d6c54c16d8,L01 Ryan,Ryan_1_intro,13,Kobold,İvit!
 273533e355fd12cf,L01 Ryan,Ryan_1_intro,14,Ryan,Ne dedin...?
-3faa3f1d46e0e544,L01 Ryan,Ryan_1_intro,15,Kobold,Ah- şey... bariyeri açacağım!
+3faa3f1d46e0e544,L01 Ryan,Ryan_1_intro,15,Kobold,Ah- şey... bariyeri açayım!
 ce6db45f1866ad91,L01 Ryan,Ryan_1_intro,16,Ryan,"Ha, şimdi çözdüm! İçerideki tuşu yeni görüyorum"
 425d9584e840b683,L01 Ryan,Ryan_1_intro,17,Ryan,"Peki, burada bekliyor olacağım. Teşekkürler."
 # --- phone: Ryan_1_PhoneTutorial ---
@@ -41,17 +41,17 @@ bb645759b5bd99d4,L01 Ryan,Ryan_1_PhoneTutorial,13,Phone,Mükemmel. O zaman pence
 474ab3afa218a5df,L01 Ryan,Ryan_1_PhoneTutorial,14,Kobold,Tamam!
 7d869361bdb13d98,L01 Ryan,Ryan_1_PhoneTutorial,15,Phone,Günün verimli geçsin.
 # --- progress: Ryan_1_required ---
-098ac93ca7999f8c,L01 Ryan,Ryan_1_required,1,Ryan,Pekala lisanslı bir ejder yıkayıcısısın öyle mi?
+098ac93ca7999f8c,L01 Ryan,Ryan_1_required,1,Ryan,"Pekala, sen lisanslı bir ejder yıkayıcısısın öyle mi?"
 7b999e621945fe90,L01 Ryan,Ryan_1_required,2,Kobold,Hıhı!
 1cb7709c2b6cdc0b,L01 Ryan,Ryan_1_required,3,Kobold,İşe başladığım yalnızca birkaç hafta oldu!
 9b9024cada67653e,L01 Ryan,Ryan_1_required,4,Ryan,Oh öyle mi!
 fbd8fe3b49aed7c5,L01 Ryan,Ryan_1_required,5,Ryan,Ben de genelde işte evdeki hortumla idare ediyordum...
-3f742efbf9edb2ee,L01 Ryan,Ryan_1_required,6,Ryan,Oh ikimiz de çömeziz idesene!
+3f742efbf9edb2ee,L01 Ryan,Ryan_1_required,6,Ryan,Oh ikimiz de çömeziz desene!
 e6c276d67e994ed5,L01 Ryan,Ryan_1_required,7,Ryan,"Aslında, bunun ne kadar da iyi hissettirdiğine şaşırdım doğrusu."
 e99ba1a86146f1aa,L01 Ryan,Ryan_1_required,8,Ryan,Hayatın tüm o koşuşturmacası içerisinde hoş bir kaçış yolu.
 line:decf872a,L01 Ryan,Ryan_1_required,9,Ryan,...
 # --- nag: Ryan_1_nag ---
-c2aa03c999eb7731,L01 Ryan,Ryan_1_nag,1,Ryan,Hey!
+c2aa03c999eb7731,L01 Ryan,Ryan_1_nag,1,Ryan,Hey bir şey söyleyeceğim!
 5b798fca0ab51d6c,L01 Ryan,Ryan_1_nag,2,Ryan,Seni görebileceğim bir yere çıkarsan bir şey söyleyeceğim sana.
 # --- jerkoff: ryan_jerk_off_no ---
 2e75bb6a3610c11b,L01 Ryan,ryan_jerk_off_no,1,Ryan,Heyy- Belki o ellerini başka zaman 'üzerime koyarsın'?
@@ -65,7 +65,7 @@ c3bbf19f280c6dde,L01 Ryan,Ryan_1_Outro,3,Kobold,Rica ederim.
 d629b0ed3f97727c,L01 Ryan,Ryan_1_Outro,6,Ryan,Bu mekanı başkalarına da tanıtacağım
 e12cf68db48908a3,L01 Ryan,Ryan_1_Outro,7,Ryan,Kesinlikle burayı unutmayacağım.
 29a9062b9b45c6ef,L01 Ryan,Ryan_1_Outro,8,Ryan,Haha. Asıl sana 'İvit!'.
-0712e97652e51758,L01 Ryan,Ryan_1_Outro,9,Ryan,"Neyse, iyi vakit geçirdim, görüşmek üzere!"
+0712e97652e51758,L01 Ryan,Ryan_1_Outro,9,Ryan,"Neyse, iyi vakit geçirdim, o halde görüşmek üzere!"
 17f93a33eafe382c,L01 Ryan,Ryan_1_Outro,10,Ryan,Çıkmam için bariyeri açabilir misin?
 1aa7b1c1d5fb1fd6,L01 Ryan,Ryan_1_Outro,12,Ryan/Conrad/Kobold/Dragon,Sağ ol!
 line:b588bf4c,L01 Ryan,Ryan_1_Outro,12,Ryan,Teşekkürler!
@@ -78,18 +78,18 @@ e2b71fbe0e3a8220,L02 Conrad,Conrad_Intro_1,2,Conrad,Pürüssüz olmalıyım. Sen
 d474060b980dd4bb,L02 Conrad,Conrad_Intro_1,4,Kobold,Şöyle buyrun.
 6c70580a9b88273d,L02 Conrad,Conrad_Intro_1,5,Conrad,Hoş. Bariyeri açman lazım tabii. Conrad'i içeri al!
 # --- progress: Conrad_required_1 ---
-87e002767e44df8e,L02 Conrad,Conrad_required_1,1,Conrad,Şe<size=90%>e<size=80%>e<size=70%>e<size=60%>y... <size=100%>Merak ediyordum da
-2d6d31d664759240,L02 Conrad,Conrad_required_1,2,Conrad,"Burası <i>mutlu sonla</i> biten mekanlardan, değil mi?"
+87e002767e44df8e,L02 Conrad,Conrad_required_1,1,Conrad,Şe<size=90%>e<size=80%>e<size=70%>e<size=60%>y... <size=100%>Merak ediyordum da...
+2d6d31d664759240,L02 Conrad,Conrad_required_1,2,Conrad,"burası <i>mutlu sonla</i> biten mekanlardan, değil mi?"
 906e9b3e20a54dc2,L02 Conrad,Conrad_required_1,3,Kobold,Buradaki tüm sonlar mutlu biter!
-c41cb150dfd261d8,L02 Conrad,Conrad_required_1,4,Kobold,Yani... cinsel şeyler mi?
+c41cb150dfd261d8,L02 Conrad,Conrad_required_1,4,Kobold,Yani... cinsel olarak mı?
 0c503978e6cd3a78,L02 Conrad,Conrad_required_1,5,Conrad,Aaa... Kastım aslında-
 c9ce0c4dd28236fa,L02 Conrad,Conrad_required_1,6,Conrad,"Benim gibi, <size=60%>büyük ejderleri<size=100%> de boşaltıyor musunuz burada?"
 daac14e0bc00f0ad,L02 Conrad,Conrad_required_1,7,Kobold,Ha- Ne- <size=80%>oha. <size=60%>biz şey-
 824dda92c5ffbad9,L02 Conrad,Conrad_required_1,8,Kobold,"Oh, hayır."
-33cb9fb42cd6a080,L02 Conrad,Conrad_required_1,9,Conrad,Ne!? bu olamaz! Bineğiniz bile yok mu sizin...?
+33cb9fb42cd6a080,L02 Conrad,Conrad_required_1,9,Conrad,Ne!? Bu olamaz! Bineğiniz bile yok mu sizin...?
 96b0e7561e23fcbb,L02 Conrad,Conrad_required_1,10,Kobold,aaa... <size=60%>hayır?
 175ccc13192756d4,L02 Conrad,Conrad_required_1,11,Conrad,O halde bir tane alsanız iyi olur!
-fcc67c51c62fb4e9,L02 Conrad,Conrad_required_1,12,Conrad,En azından hala ellerin iş görebilir. Heh.
+fcc67c51c62fb4e9,L02 Conrad,Conrad_required_1,12,Conrad,En azından ellerin hala iş görebilir. Heh.
 a29919179016a4e8,L02 Conrad,Conrad_required_1,13,Conrad,Öyle mi? Binek bile görmüyorum ben buradan.
 6ec80eb8deb5afd8,L02 Conrad,Conrad_required_1,14,Kobold,"Ya... ni, bizde ondan yok."
 22706d3faee3b165,L02 Conrad,Conrad_required_1,15,Kobold,"Hayır, burada o tarz şeyler sunmuyoruz."
@@ -133,7 +133,7 @@ line:836d1b13,L03 Alexander,Alexander_1_intro,11,Alexander,Teşekkür ederim.
 57c2b1f349d8b9e9,L03 Alexander,Alexander_1_intro,12,Alexander,"Oh, ayriyetten bu denli pis olduğum için de özür diliyorum."
 c44510120d3f5f7e,L03 Alexander,Alexander_1_intro,13,Alexander,Halim pişman olunası...
 550840616bc8148d,L03 Alexander,Alexander_1_intro,14,Kobold,O kadar da... pis değilsin.
-21e1f6bc71429bdb,L03 Alexander,Alexander_1_intro,15,Kobold,Sorun değil. Senin için yolu açayım!
+21e1f6bc71429bdb,L03 Alexander,Alexander_1_intro,15,Kobold,Sorun değil. Senin için bariyeri açayım!
 14ddfac745bc0ec3,L03 Alexander,Alexander_1_intro,16,Alexander,"Hayır, öyleyim."
 line:4da86a7a,L03 Alexander,Alexander_1_intro,17,Alexander,...
 65b94d53036df4ac,L03 Alexander,Alexander_1_intro,18,Alexander,Bariyeri rica edersem açar mısın?
@@ -189,8 +189,8 @@ a1dd2ff2d1ef6beb,L04 Ryan,Ryan_2_required,4,Ryan,Sana bir soru sorabilir miyim?
 c10c037156053bfe,L04 Ryan,Ryan_2_required,6,Kobold,Olur.
 4f6d869aa239596c,L04 Ryan,Ryan_2_required,7,Ryan,"Oh, doğru. Pardon."
 0fa0dff561f86016,L04 Ryan,Ryan_2_required,8,Ryan,"Şey, ilişkilerlerde... ."
-9a38b89ed035e464,L04 Ryan,Ryan_2_required,9,Ryan,Eğer bir ilişki <i>çok</i> inişli çıkışlıysa ve biteceğine eminsen
-9b943020b9ae2658,L04 Ryan,Ryan_2_required,10,Ryan,onu kurtarmak için her şeyi denediysen
+9a38b89ed035e464,L04 Ryan,Ryan_2_required,9,Ryan,Eğer bir ilişki <i>çok</i> inişli çıkışlıysa ve biteceğine eminsen...
+9b943020b9ae2658,L04 Ryan,Ryan_2_required,10,Ryan,onu kurtarmak için her şeyi denediysen...
 line:695ef750,L04 Ryan,Ryan_2_required,11,Ryan,...
 954ba66a076849a5,L04 Ryan,Ryan_2_required,12,Ryan,o ilişkiye ne zaman son vereceğini nereden bilirsin?
 f173e528733bb05a,L04 Ryan,Ryan_2_required,13,Kobold,Ah- Ryan...
@@ -467,9 +467,9 @@ f9e0d3cba1f3548e,L08 Conrad,Conrad_finished_jerkoff_3,7,Conrad,Bir koboldun neyi
 line:a6531779,L08 Conrad,Conrad_finished_jerkoff_3,9,Conrad,...
 83d081eadc40b86b,L08 Conrad,Conrad_finished_jerkoff_3,10,Conrad,sikime dokunulmasında.
 # --- cum: Conrad_Outro_3 | if $conrad_jerked_off_3 $conrad_used_mount_3 ---
-6f64e0cc9b162541,L08 Conrad,Conrad_Outro_3,1,Conrad,"Bak, şey. Merak ediyordum da..'"
+6f64e0cc9b162541,L08 Conrad,Conrad_Outro_3,1,Conrad,"Bak, şey. Merak ediyordum da...'"
 dd5acacdb6c59489,L08 Conrad,Conrad_Outro_3,2,Conrad,şimdi bunu sormak kulağa biraz garip gelebilir amaaaa...
-7f39f874a107d858,L08 Conrad,Conrad_Outro_3,3,Conrad,acaba takılabileceğim hiç güzel yerler veya birilerini biliyor musun?
+7f39f874a107d858,L08 Conrad,Conrad_Outro_3,3,Conrad,acaba takılabileceğim güzel yerler veya birilerini hiç biliyor musun?
 df48dbfe82678dea,L08 Conrad,Conrad_Outro_3,4,Kobold,"<gradient=""gold""><b> Bildiğim bir ejder var, ismi Ryan. İkinizi tanıştırmamı ister misin? </b></gradient><size=70%>(Conrad/Ryan sevişme sahnesini açar YA DA Ryan ile ilişki yapmanızı sağlar)"
 7b870878852ee72d,L08 Conrad,Conrad_Outro_3,5,Kobold,"<gradient=""gold""><b> Seninle takılmaya hayır demezdim... </b></gradient><size=70%> (Conrad ile ilişki yapmanızı sağlar)"
 ac6820f366b18b44,L08 Conrad,Conrad_Outro_3,6,Conrad,Başka bir ejder mi? Genelde diğer ejderlerle anlaşamam...
@@ -505,12 +505,12 @@ c395eb5878798c08,L08 Conrad,Conrad_Outro_3,36,Kobold,Oh! boşver. Bariyeri açay
 102e28eb7d17c7dd,L08 Conrad,Conrad_Outro_3,37,Conrad,"Oh, peki. Sağ ol."
 ca518354e1f14735,L08 Conrad,Conrad_Outro_3,38,Conrad,"Peki, teşekkürler."
 # --- cum: Conrad_finished_jerkoff_3 ---
-5dffcc40132f0ec4,L08 Conrad,Conrad_finished_jerkoff_3,11,Conrad,Now I'm eyeballing the mount...
-45c2b89acdcfd55d,L08 Conrad,Conrad_finished_jerkoff_3,12,Conrad,Let me give it a try!
-57725c300be82fa5,L08 Conrad,Conrad_finished_jerkoff_3,13,Kobold,Oh okay. I'll go grab it.
-1976e7477a26b680,L08 Conrad,Conrad_finished_jerkoff_3,14,Kobold/Ryan,Sure!
-line:05c673e7,L08 Conrad,Conrad_finished_jerkoff_3,14,Kobold,Sure!
-9e50b8e48f012f1f,L08 Conrad,Conrad_finished_jerkoff_3,15,Conrad,Hell yeah
+5dffcc40132f0ec4,L08 Conrad,Conrad_finished_jerkoff_3,11,Conrad,Şu bineğe gözümü kestiriyordum...
+45c2b89acdcfd55d,L08 Conrad,Conrad_finished_jerkoff_3,12,Conrad,Getir de deneyeyim!
+57725c300be82fa5,L08 Conrad,Conrad_finished_jerkoff_3,13,Kobold,Oh peki. Gidip alayım.
+1976e7477a26b680,L08 Conrad,Conrad_finished_jerkoff_3,14,Kobold/Ryan,Tabii ki!
+line:05c673e7,L08 Conrad,Conrad_finished_jerkoff_3,14,Kobold,Tabii ki!
+9e50b8e48f012f1f,L08 Conrad,Conrad_finished_jerkoff_3,15,Conrad,İşte böyle
 # --- mount_start: Conrad_placed_mount_3 ---
 b9778eb1fe076168,L08 Conrad,Conrad_placed_mount_3,1,Conrad,Hah! İşte bineğimiz!
 86b1b615d536c6c9,L08 Conrad,Conrad_placed_mount_3,2,Conrad,Şe<size=90%>e<size=80%>e<size=70%>e<size=60%>y... <size=100%>pis sayılmam ama <i>~pisleşebilirim~</i> anlıyor musun?
@@ -546,7 +546,7 @@ fba1924f5f79713e,L08 Conrad,Conrad_finished_mount_3,16,Conrad,"Neyse, her yerimi
 44aa54eec876d22e,L08 Conrad,Conrad_OutroDirty,2,Kobold,Pardon benim hatam
 85d8ae405abc5722,L08 Conrad,Conrad_OutroDirty,3,Kobold,Hay aksi
 # --- mount_finish: Conrad_OutroSoapy ---
-d7bb84bfc322967e,L08 Conrad,Conrad_OutroSoapy,1,Conrad,Her tarafım sabun!
+d7bb84bfc322967e,L08 Conrad,Conrad_OutroSoapy,1,Conrad,Her tarafım hala köpük!
 # --- mount_finish: ErrorHasOccurred ---
 9241fa9324783298,L08 Conrad,ErrorHasOccurred,1,ErrorHasOccurred,Hassiktir oyun çöktü
 fbc99d34c317d087,L08 Conrad,ErrorHasOccurred,2,ErrorHasOccurred,eğer bu yazıyı görüyorsanız ya kendinize bir kahve alın ya da bug report yollayın
@@ -557,8 +557,8 @@ line:a8e2f13e,L08 Conrad,Conrad_Outro,1,Conrad,==
 01cf590e183ce38a,L08 Conrad,Conrad_Outro,2,Conrad,title: Conrad_OutroDone
 cb3f91d54eee30e5,L08 Conrad,Conrad_Outro,3,Conrad/Alexander/Ryan,---
 line:db5b3129,L08 Conrad,Conrad_Outro,3,Conrad,---
-c571db95fc1e4f78,L08 Conrad,Conrad_Outro,4,Conrad,"Ahh, all cleaned and with a lighter load."
-e374c1b3adfa0cf8,L08 Conrad,Conrad_Outro,5,Conrad,"Thanks mate, see you tomorrow then."
+c571db95fc1e4f78,L08 Conrad,Conrad_Outro,4,Conrad,"Ahh, tertemiz oldum, neredeyse kilo verdim."
+e374c1b3adfa0cf8,L08 Conrad,Conrad_Outro,5,Conrad,"Sağ ol ahbap, yarın görüşürüz o halde."
 
 # ===== Level 9: Alexander (Sunny) =====
 # --- intro: Alexander_3_intro ---
@@ -1970,6 +1970,16 @@ dc2099e76df820a2,Unused,Start,22,Start,Test line 16
 add98a1ef99b1290,Unused,Start,24,Start,Test line 18
 
 # ===== UI and other text (not part of the dialogue script) =====
+a462b8c590652563,UI,,,UI,Yazı Girin...
+f942d1e183d020b6,UI,,,UI,YEDEĞİ SİL
+4b36f28b2cf37677,UI,,,UI,KÖPÜKLÜ
+c9c8bf1eae99e1dc,UI,,,UI,KONUŞMAK İSTİYOR
+dde8c08738fe9e59,UI,,,UI,SİKİNE DOKUNULMASINI İSTİYOR
+b6dcb96448c66497,UI,,,UI,YÜKLENİYOR...
+3e49dd16f3893026,UI,,,UI,TEMİZ
+b98b0ff714ab5417,UI,,,UI,YARA BANDINA İHTİYACI VAR
+e4e9ab13fc711176,UI,,,UI,PİS
+fae07a8540ff237b,UI,,,UI,Gerçekten Kaydı Silmek İstiyor Musun?
 fe199528850a4e24,UI,,,UI,Kaldır
 74a883a037bc227f,UI,,,UI,Ayarlar
 130011756125313c,UI,,,UI,Açık
@@ -1993,7 +2003,7 @@ ca7981b46ecf2c17,UI,,,UI,Kapalı
 da43a1983d819a4d,UI,,,UI,Genişletilmiş Pencere
 3f26603a2748fed3,UI,,,UI,Serbest Pencere
 052810dae19607f5,UI,,,UI,VSync
-42e7fdbd13ba2a01,UI,,,UI,Framerate Sınırı
+42e7fdbd13ba2a01,UI,,,UI,Kare Hızı Sınırı
 41ca171b0cbae01e,UI,,,UI,Ekran Parlaklığı
 d4055fafa3794fa8,UI,,,UI,Çözünürlük
 6a3041fb3ecba173,UI,,,UI,Kamera FOV'u
@@ -2015,8 +2025,6 @@ de7b57b57b05d020,UI,,,UI,Ses Efektleri
 b3f848c2a09aa9ed,UI,,,UI,Müzik Seviyesi
 bc1b88907d3b748a,UI,,,UI,Ses Ayarları
 6e58b577a084052a,UI,,,UI,Modlar
-a462b8c590652563,UI,,,UI,Yazı Girin...
-fae07a8540ff237b,UI,,,UI,Gerçekten Kaydı Silmek İstiyor Musun?
 b8564290c0e0b5a8,UI,,,UI,Oynadığınız için teşekkürler!
 e9ef3ed08e160ae3,UI,,,UI,"Emeği Geçenler:
 "
@@ -2120,14 +2128,14 @@ dbd3a49d0d906b4e,UI,,,UI,en
 bc5b45ae7b60692a,UI,,,UI,Reset to default
 67529e7fdc6098a0,UI,,,UI,Saved right away. Some mods only use a change after a restart.
 b9d0dd131d07b5ad,UI,,,UI,"Shared tools for Drag'n Wash mods, including this Mods screen."
-4850b174b713d88c,UI,,,UI,Required
+4850b174b713d88c,UI,,,UI,Zorunlu
 22e2bada8f1c65cd,UI,,,UI,Updates
 f26f3275e735bdf6,UI,,,UI,Check for updates
 a6a1b13028fd8c9c,UI,,,UI,"Once a day, ask GitHub whether mods that name their GitHub repository have a newer release. Nothing about you or your game is sent."
 4a3370cdde3e93b5,UI,,,UI,v1.0.0   TomXV
 e6af4688a3314648,UI,,,UI,"One shared in-game window (F1) where mods add tabs for their developer and debug tools, usable with mouse, gamepad and on the Steam Deck."
 966e2f6e640f0be4,UI,,,UI,ModFramework
-fd35647f8ecb2f7d,UI,,,UI,Needed by
+fd35647f8ecb2f7d,UI,,,UI,İhtiyaç duyan modlar
 2277a4269b0a8035,UI,,,UI,FontMode
 929260ad9b9ea9fe,UI,,,UI,auto
 c37dc0f17f3c5448,UI,,,UI,ToggleKey
@@ -2145,3 +2153,88 @@ e33072d0f0267e46,UI,,,UI,"Tells mods which line of dialogue or option is about t
 8011d40f3e21c751,UI,,,UI,"Point size glyphs are rasterized at for the fallback fonts. Higher is sharper. Glyphs are rasterized when a mod prepares its text, usually at startup, so raising this costs loading time rather than performance during play."
 dabd3aff769f07eb,UI,,,UI,<
 62b67e1f685b7fef,UI,,,UI,>
+76900f1bfd16c8d4,UI,,,UI,Geri git
+37fe885f1406e372,UI,,,UI,Oyun tekrar açıldığında kapanmış olacak
+9cc5c7f026ce0ca7,UI,,,UI,Oyun tekrar açıldığında açılmış olacak
+fa20beae3754ffb1,UI,,,UI,Diğer modların bu parçaya ihtiyacı var. İkinci defa Kapat tuşuna basarak yine de görmezden gelebilirsin.
+d57274b504a45b33,UI,,,UI,"BepInEx/plugins dizini haricinde kuruldu, o yüzden bu arayüzden kapatılamaz"
+6b4075522b85ca52,UI,,,UI,"Drag'n Wash'u birçok dilde oynamanızı sağlar. Diyaloglar, seçimler, arayüz ve ayarlar dahil."
+1cd1ca858aaea1d0,UI,,,UI,Yüklenemedi. İhtiyaç duyduğu mod(lar)
+eda662e0b5033180,UI,,,UI,Yüklenemedi. Şu modla(rla) berabar çalıştırılamaz
+a8d12a246b72d98c,UI,,,UI,Yüklenemedi BepInEx/LogOutput.log dosyasına göz atın.
+7c862b0749e737c4,UI,,,UI,Ön yükleyici yaması. Tüm modlardan önce çalışır ve buradan kapatılamaz.
+e0aaa77caac35ceb,UI,,,UI,Oyun içi yazıları modlara sunar ve canlı olarak değiştirilmesini sağlar.
+77777bd04fb7c9ae,UI,,,UI,Oyunun bu sürümünde çalışmaz:
+014659ab9d98c8fe,UI,,,UI,Çakışma
+02e19c617a19bae7,UI,,,UI,Oyunu kodunu şununla değiştirir:
+61ec4dc622c31ea9,UI,,,UI,Oyunu kodunu şununla değiştirip üzerine yazabilir:
+c1c1009d3f37ec05,UI,,,UI,Güncelle
+4168cfb8a090a98c,UI,,,UI,Yeni bir sürüm bulundu:
+cd6c9851e91ad7b6,UI,,,UI,Dağıtım sayfasını aç
+86965245a1d725c1,UI,,,UI,Lütfen oyunun sonraki açılışında da bu modu kaldırın. Modla ilgili olan ayarlarınız da silindi.
+0d21bd52022ca7f7,UI,,,UI,İnternetli
+4128f75bc14cb290,UI,,,UI,Kullandığı internet bağlantıları:
+df0880be16beba51,UI,,,UI,Habersizce internete bağlananlar:
+57e8a431deec0d70,UI,,,UI,İnternet
+08b39d1ef62da47d,UI,,,UI,Bu mod internet kullanmıyor.
+5abdf73450d24379,UI,,,UI,Ne için kullanıyor:
+c1e450770d88b778,UI,,,UI,Hangi verileri yolluyor:
+3090d827c103d5fb,UI,,,UI,Nasıl kapatılır:
+068109fd3f73fbbb,UI,,,UI,Belirtilmedi
+e21a8c81f7921504,UI,,,UI,Şu anki oturum günlüğü
+da5cbc2185c976ff,UI,,,UI,Hiçbir bağlantı kurulmadı.
+285202c5ed5c42de,UI,,,UI,mod tarafından oluşturulmadı
+a9043748d4bf169d,UI,,,UI,Bağlantı gözetleme kapalı (Modlar → Drag'n Wash ModFramework → Ayarlar → Bağlantıları gözetle).
+1c0285d6d7fef2fc,UI,,,UI,"Bu arayüz yalnızca gözetler, hiçbir bağlantıyı engellemez, modlar gene dealternatif yollarla internete bağlanabilir."
+1744b96470b51bf3,UI,,,UI,Bağlantı
+fa25265454345a35,UI,,,UI,Bağlantıları gözetle
+4e9ec4e264c704c6,UI,,,UI,"İnternete bağlanan modları not eder ve habersizce bağlantı kuran modları Modlar ekranına yansıtır. Yalnızca gözetleme içindir ve hiçbir bağlantıyı engellemez, modlar gene de alternatif yollarla internete bağlanabilir."
+4efca0d10c5feb8e,UI,,,UI,Bilgiler
+2a78025de6aae5e7,UI,,,UI,Seç
+49c266baaaa70981,UI,,,UI,Ara
+8e5ea509893e6dfd,UI,,,UI,Pencereler
+b186b72af3a9220b,UI,,,UI,Modları ara
+a52ace420f2175d0,UI,,,UI,Hepsi
+c1ebc7817870e5be,UI,,,UI,Problemliler
+5425c8a0e9f51e45,UI,,,UI,Yüklü modlar
+62ef6fd92ee145d9,UI,,,UI,Kütüphaneler
+039a4ba79024f646,UI,,,UI,Böyle bir mod bulunamadı.
+c38e30b78746dd5d,UI,,,UI,Yeniden başlatılması gerek
+9b41ba20b8a3c870,UI,,,UI,Yüklenmedi
+c0bf75bd78bf9572,UI,,,UI,Değiştir
+735e90830151725a,UI,,,UI,Bir tuşa basın...
+255b076dd8285543,UI,,,UI,Ayar ara
+17e2e45fabbbe2d7,UI,,,UI,Böyle bir ayar bulunamadı.
+05b2c6a1fcb6bbf8,UI,,,UI,Bazı modlar yalnızca yeniden başlatmayla çalışır.
+ddffc64c97ab01fa,UI,,,UI,Modlar kontrol ediliyor...
+5a94893163d16669,UI,,,UI,Bu sayfa görüntülenemedi. Lütfen BepInEx/LogOutput.log dosyasını kontrol edin.
+d8b8392e2c542950,UI,,,UI,Tekrar dene
+b5c120b316c237a0,UI,,,UI,Kaydedildi
+c0d5bf6b1b7403fc,UI,,,UI,Gelişmiş ayarları göster
+8c0d6671eddcace2,UI,,,UI,Oyun yeniden başlatıldıktan sonra etki gösterir.
+dc670595f5b3640c,UI,,,UI,Yeniden yüklendi
+5c3d37b67aa6aa8e,UI,,,UI,Buzlu cam
+d8f9dfaea2d00f89,UI,,,UI,Mod ekranı
+6ad27bd4ec33b079,UI,,,UI,Anlık kare
+6aac1c42e81bfc11,UI,,,UI,Her karede
+804bf37820856b9e,UI,,,UI,"Liste ve detayların arkasına buzlu cama benzer buğulu bir görüntü ekler. Anlık kare modunda görüntü her 0.2 saniyede alınır. Daha fazla ekran kartı gücü kullanan her karede modu ise görüntüyü her karede bir alır, bu sayede cam oyunla beraber güncellenir. Kapalı ise camı yalnızca siyah yarı saydam bir panele dönüştürür. Eğer ki görüntü efektleri elde edilemezse panel kapalı modundakiyle aynı görüntüyü verir ve sebebi oyunun sistem günlüklerinde yazılır."
+b92aac75152ab328,UI,,,UI,Şu kısayolla aynı oldu
+8ba391628be0d7e1,UI,,,UI,Kabul edilemedi
+2500ecd4097d27aa,UI,,,UI,kere oturumu yeniledi
+2f7d5fa49a67f87b,UI,,,UI,Şu anda çalışan şeyi BepInEx yüklemedi.
+c3db47aff1d7221d,UI,,,UI,Kısayol aynı anda çalışacak.
+0afead460dc30929,UI,,,UI,Hepsi aynı anda çalışacak.
+d0db8b5e364b6989,UI,,,UI,Ayarlar
+28f9044138a54b95,UI,,,UI,Yeni oyun
+2a6b24ad28722034,UI,,,UI,Emeği geçenler
+b3eb37acb66ba4bb,UI,,,UI,Çık
+2316810a5de343dd,UI,,,UI,Klavye
+d640c7421da06661,UI,,,UI,Devam et
+ffb3c5f2edc34373,UI,,,UI,Beklemede
+b735b39b4eea8b70,UI,,,RYAN,İlk defa herkese açık yerde yapıyorum bunu
+c913913d57c38493,UI,,,Conrad,Endişelenecek bir şey yok!
+d0ee8dcf7035040c,UI,,,Conrad,Ben her zaman yapıyorum
+b00675617fbac31a,UI,,,Ryan,Çok heyecan verici
+1b01a1658c9a5adf,UI,,,Conrad,Eğleniyor musun?
+b92f91849d855b40,UI,,,UI,Conrad
+2d1e830624b2572a,UI,,,UI,Ryan
